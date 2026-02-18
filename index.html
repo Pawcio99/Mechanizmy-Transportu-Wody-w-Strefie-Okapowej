@@ -1,747 +1,1774 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mechanizmy Transportu Wody w Strefie Okapowej: Analiza Zjawisk Nieintuicyjnych</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            line-height: 1.8;
-            color: #1a1a1a;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%);
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.15);
-            border-radius: 8px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 60px 40px;
-            text-align: center;
-            border-bottom: 5px solid #d4af37;
-        }
-        
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .subtitle {
-            font-size: 1.3em;
-            font-weight: 300;
-            margin-top: 10px;
-            font-style: italic;
-            opacity: 0.95;
-        }
-        
-        .meta {
-            margin-top: 25px;
-            font-size: 0.9em;
-            opacity: 0.9;
-            letter-spacing: 1px;
-        }
-        
-        .abstract {
-            background: #f8f9fa;
-            border-left: 5px solid #2a5298;
-            padding: 30px 40px;
-            margin: 40px;
-            border-radius: 4px;
-            font-style: italic;
-            color: #2c3e50;
-        }
-        
-        .abstract h2 {
-            font-style: normal;
-            color: #1e3c72;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-        
-        main {
-            padding: 40px 60px;
-        }
-        
-        h2 {
-            color: #1e3c72;
-            font-size: 2em;
-            margin-top: 50px;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #d4af37;
-            font-weight: 700;
-        }
-        
-        h3 {
-            color: #2a5298;
-            font-size: 1.5em;
-            margin-top: 35px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        h4 {
-            color: #34495e;
-            font-size: 1.2em;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            font-style: italic;
-        }
-        
-        p {
-            margin-bottom: 20px;
-            text-align: justify;
-            hyphens: auto;
-        }
-        
-        .equation {
-            background: #f0f4f8;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 5px;
-            border-left: 4px solid #2a5298;
-            font-family: 'Courier New', monospace;
-            text-align: center;
-            font-size: 1.1em;
-        }
-        
-        .equation-label {
-            display: block;
-            text-align: right;
-            font-size: 0.9em;
-            color: #666;
-            margin-top: 10px;
-            font-style: italic;
-        }
-        
-        .definition {
-            background: #fff9e6;
-            border: 2px solid #ffd700;
-            padding: 20px 25px;
-            margin: 25px 0;
-            border-radius: 6px;
-        }
-        
-        .definition strong {
-            color: #d4af37;
-            font-size: 1.1em;
-        }
-        
-        .warning {
-            background: #fff5f5;
-            border-left: 5px solid #e74c3c;
-            padding: 20px 25px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-        
-        .warning h4 {
-            color: #c0392b;
-            margin-top: 0;
-        }
-        
-        .insight {
-            background: #f0f9ff;
-            border-left: 5px solid #3498db;
-            padding: 20px 25px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-        
-        .insight h4 {
-            color: #2980b9;
-            margin-top: 0;
-        }
-        
-        .phenomenon {
-            background: #f5f0ff;
-            border: 2px solid #9b59b6;
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 8px;
-        }
-        
-        .phenomenon h4 {
-            color: #8e44ad;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-        
-        ul, ol {
-            margin: 20px 0 20px 40px;
-        }
-        
-        li {
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-        
-        .case-study {
-            background: #e8f5e9;
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 6px;
-            border-left: 5px solid #27ae60;
-        }
-        
-        .case-study h4 {
-            color: #27ae60;
-            margin-top: 0;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        th {
-            background: #2a5298;
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-        
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        tr:hover {
-            background: #f8f9fa;
-        }
-        
-        .figure {
-            margin: 40px 0;
-            padding: 20px;
-            background: #fafafa;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            text-align: center;
-        }
-        
-        .figure-caption {
-            font-style: italic;
-            color: #666;
-            margin-top: 15px;
-            font-size: 0.95em;
-        }
-        
-        .reference {
-            font-size: 0.9em;
-            color: #555;
-            background: #f5f5f5;
-            padding: 8px 12px;
-            border-radius: 3px;
-            margin: 5px 0;
-        }
-        
-        .conclusions {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 60px;
-            margin-top: 50px;
-            border-radius: 0 0 8px 8px;
-        }
-        
-        .conclusions h2 {
-            color: white;
-            border-bottom: 3px solid rgba(255,255,255,0.3);
-        }
-        
-        .footnote {
-            font-size: 0.85em;
-            color: #666;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
-            margin-top: 40px;
-        }
-        
-        .highlight {
-            background: linear-gradient(120deg, #ffd700 0%, #ffed4e 100%);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: 600;
-        }
-        
-        strong {
-            color: #2c3e50;
-            font-weight: 700;
-        }
-        
-        em {
-            color: #34495e;
-        }
-        
-        .critical {
-            color: #e74c3c;
-            font-weight: 700;
-            text-decoration: underline;
-        }
-        
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            
-            .container {
-                box-shadow: none;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            main {
-                padding: 20px 30px;
-            }
-            
-            header {
-                padding: 40px 20px;
-            }
-            
-            header h1 {
-                font-size: 1.8em;
-            }
-            
-            .abstract {
-                margin: 20px;
-                padding: 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaskadowa Degradacja Kalenicy PIR — Analiza Dwóch Scenariuszy z Prognozą Zniszczenia</title>
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f0f1a;
+      --paper: #f9f7f2;
+      --navy: #11253f;
+      --blue: #1d4e89;
+      --gold: #c9940a;
+      --rust: #9b3a2a;
+      --border: #d2c4aa;
+
+      --c1-bg:#e5f1fb; --c1-bd:#1a6fa0; --c1-tx:#0b3650;
+      --c2-bg:#e8f5e9; --c2-bd:#2e7d32; --c2-tx:#163a19;
+      --c3-bg:#fef6e0; --c3-bd:#e07800; --c3-tx:#6a3600;
+      --c4-bg:#fde8e8; --c4-bd:#c62828; --c4-tx:#780000;
+      --c5-bg:#190707; --c5-bd:#ff1744; --c5-tx:#ffd5d5;
+
+      --scen-a-bg:#f0f7ff; --scen-a-bd:#1565c0; --scen-a-tx:#0d2a5c;
+      --scen-b-bg:#fff8f0; --scen-b-bd:#bf360c; --scen-b-tx:#5c1a00;
+
+      --warn-bg:#fff9e0; --warn-bd:#c8960a;
+      --crit-bg:#2e0000; --crit-bd:#ff1744; --crit-tx:#ffcfcf;
+
+      --prog-0: #43a047;
+      --prog-25: #fdd835;
+      --prog-50: #fb8c00;
+      --prog-75: #e53935;
+      --prog-100: #b71c1c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.78;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    /* ════ MASTHEAD ════ */
+    .masthead {
+      background: var(--navy);
+      color: #fff;
+      padding: 52px 64px 40px;
+      border-bottom: 6px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+      /* CENTER ALL CONTENT — works on every device */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .masthead::before {
+      content:''; position:absolute; right:-60px; top:-60px;
+      width:360px; height:360px; border-radius:50%;
+      background:rgba(255,255,255,0.03);
+    }
+    .masthead-label {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.67rem; letter-spacing:0.22em;
+      text-transform:uppercase; color:var(--gold);
+      margin-bottom:14px;
+      text-align: center;
+    }
+    .masthead h1 {
+      font-family:'Playfair Display',serif;
+      font-size:2.05rem; font-weight:700; line-height:1.22;
+      color:#fff; max-width:860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .masthead h1 em { font-style:italic; color:#ffc84a; }
+    .masthead-sub {
+      margin-top:16px; font-size:0.96rem;
+      color:rgba(255,255,255,0.73); max-width:780px; line-height:1.65;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .masthead-tags {
+      margin-top:22px; display:flex; flex-wrap:wrap; gap:8px;
+      justify-content: center;
+    }
+    .tag {
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.16);
+      border-radius:20px; padding:3px 11px;
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.63rem; letter-spacing:0.1em;
+      text-transform:uppercase; color:rgba(255,255,255,0.58);
+    }
+
+    /* ════ ALERT ════ */
+    .alert-top {
+      background:linear-gradient(135deg,#6a1200,#a82600);
+      color:#ffe8e0; padding:28px 64px;
+      border-bottom:3px solid #ff5520;
+      /* LARGER FONT as requested */
+      font-size: 1.25rem;
+      line-height: 1.65;
+      text-align: center;
+    }
+    .alert-top strong { color:#ffcbb0; }
+
+    /* ════ CONTENT ════ */
+    .content { max-width:1120px; margin:0 auto; padding:44px 64px 90px; }
+
+    /* ════ HEADINGS ════ */
+    h2 {
+      font-family:'Playfair Display',serif;
+      font-size:1.4rem; color:var(--navy);
+      margin:56px 0 18px; padding-bottom:10px;
+      border-bottom:2.5px solid var(--gold);
+      display:flex; align-items:baseline; gap:14px;
+    }
+    .sn {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.73rem; color:var(--gold);
+      letter-spacing:0.1em; flex-shrink:0;
+    }
+    h3 {
+      font-family:'Playfair Display',serif;
+      font-size:1.1rem; color:var(--blue);
+      margin:30px 0 10px;
+    }
+    h3.ital { font-style:italic; }
+
+    p { margin-bottom:15px; font-size:0.97rem; }
+
+    /* ════ FORMULA ════ */
+    .fb {
+      background:#fff; border:1px solid var(--border);
+      border-left:5px solid var(--blue);
+      padding:18px 26px; margin:18px 0;
+      border-radius:0 8px 8px 0; overflow-x:auto;
+    }
+
+    /* ════ MATH DISPLAY — pure HTML, no external libs ════ */
+    .math-block {
+      display: block;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.08rem;
+      text-align: center;
+      padding: 10px 12px;
+      margin: 10px 0;
+      color: #1a2a4a;
+      letter-spacing: 0.01em;
+      line-height: 1.7;
+      background: rgba(29, 78, 137, 0.04);
+      border-radius: 4px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .math-block strong {
+      color: #11253f;
+      font-weight: 700;
+    }
+    .fb .math-block { margin: 10px 0; }
+
+    .fl {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.64rem; letter-spacing:0.14em;
+      text-transform:uppercase; color:var(--gold);
+      margin-bottom:7px;
+    }
+    .fb p { font-size:0.83rem; color:#555; margin-top:9px; margin-bottom:0; }
+
+    /* ════ SCENARIO BOXES ════ */
+    .scenario-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:24px; margin:32px 0;
+    }
+    .scen {
+      border-radius:10px; border-top:5px solid;
+      padding:24px 26px; position:relative;
+    }
+    .scen-a {
+      background:var(--scen-a-bg);
+      border-color:var(--scen-a-bd);
+    }
+    .scen-b {
+      background:var(--scen-b-bg);
+      border-color:var(--scen-b-bd);
+    }
+    .scen-label {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.63rem; letter-spacing:0.17em;
+      text-transform:uppercase; font-weight:600;
+      margin-bottom:8px;
+    }
+    .scen-a .scen-label { color:var(--scen-a-bd); }
+    .scen-b .scen-label { color:var(--scen-b-bd); }
+    .scen h3 { margin-top:0; margin-bottom:10px; font-style:normal; }
+    .scen-a h3 { color:var(--scen-a-tx); }
+    .scen-b h3 { color:var(--scen-b-tx); }
+    .scen p { font-size:0.91rem; }
+    .scen-a p { color:#1a3060; }
+    .scen-b p { color:#5c2000; }
+
+    /* ════ VERDICT ════ */
+    .verdict {
+      display:inline-block;
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.72rem; font-weight:600;
+      letter-spacing:0.1em; text-transform:uppercase;
+      padding:3px 10px; border-radius:4px;
+      margin:4px 0;
+    }
+    .v-fail { background:#ffcccc; color:#8b0000; border:1px solid #e53935; }
+    .v-part { background:#fff3e0; color:#e65100; border:1px solid #fb8c00; }
+    .v-ok   { background:#e8f5e9; color:#1b5e20; border:1px solid #43a047; }
+    .v-crit { background:#3a0000; color:#ff8a80; border:1px solid #ff1744; }
+
+    /* ════ PHYSICS ILLUSION ════ */
+    .myth-reality {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:20px; margin:22px 0;
+    }
+    .mr-col {
+      border-radius:8px; padding:18px 20px;
+    }
+    .mr-myth { background:#fff3f3; border:2px solid #e53935; }
+    .mr-real { background:#f0faf0; border:2px solid #388e3c; }
+    .mr-label {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.61rem; letter-spacing:0.16em;
+      text-transform:uppercase; font-weight:600; margin-bottom:9px;
+    }
+    .mr-myth .mr-label { color:#c62828; }
+    .mr-real .mr-label { color:#2e7d32; }
+    .mr-col ul { list-style:none; }
+    .mr-col ul li {
+      font-size:0.89rem; padding:5px 0 5px 20px;
+      position:relative; border-bottom:1px solid rgba(0,0,0,0.06);
+      line-height:1.5;
+    }
+    .mr-col ul li:last-child { border:none; }
+    .mr-myth li::before { content:'✗'; position:absolute; left:0; color:#c62828; font-weight:700; }
+    .mr-real li::before { content:'✓'; position:absolute; left:0; color:#2e7d32; font-weight:700; }
+
+    /* ════ HIGHLIGHT ════ */
+    mark { background:#fff3a0; color:#3d2e00; padding:0 3px; border-radius:2px; }
+    .hr  { background:#ffe0e0; color:#6a0000; padding:0 3px; border-radius:2px; }
+    .hg  { background:#e0ffe0; color:#004400; padding:0 3px; border-radius:2px; }
+
+    /* ════ CASCADE FLOW ════ */
+    .cascade-flow {
+      position:relative; padding-left:36px; margin:36px 0;
+    }
+    .cascade-flow::before {
+      content:''; position:absolute;
+      left:14px; top:22px; bottom:22px; width:4px;
+      background:linear-gradient(to bottom,var(--c1-bd),var(--c2-bd),var(--c3-bd),var(--c4-bd),var(--c5-bd));
+      border-radius:4px;
+    }
+    .cs { position:relative; margin-bottom:28px; }
+    .cs::before {
+      content:''; position:absolute;
+      left:-30px; top:24px; width:14px; height:14px;
+      border-radius:50%; border:3px solid var(--paper);
+      box-shadow:0 0 0 3px var(--sc, #888);
+      background:var(--sc, #888);
+    }
+    .dn { text-align:left; padding-left:4px; font-size:1.3rem; color:#bbb; margin:-12px 0 -4px; line-height:1; }
+
+    .cbox {
+      border-radius:8px; border-left:6px solid;
+      padding:18px 22px;
+    }
+    .cbox-tag {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.63rem; letter-spacing:0.16em;
+      text-transform:uppercase; font-weight:600; margin-bottom:7px;
+    }
+    .cbox h4 { font-family:'Playfair Display',serif; font-size:1.04rem; margin-bottom:9px; }
+    .cbox p { font-size:0.91rem; margin-bottom:7px; }
+    .cbox .fi {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.79rem; background:rgba(255,255,255,0.55);
+      padding:3px 9px; border-radius:4px;
+      display:inline-block; margin:4px 0;
+    }
+    .cbox .eff {
+      font-size:0.88rem; margin-top:10px; padding-top:10px;
+      border-top:1px solid rgba(0,0,0,0.1);
+    }
+    .cbox .sc-pair {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:10px; margin-top:10px;
+    }
+    .cbox .sc-mini {
+      border-radius:5px; padding:10px 12px; font-size:0.83rem;
+    }
+    .cbox .sc-mini .sm-label {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.58rem; letter-spacing:0.12em;
+      text-transform:uppercase; font-weight:600; margin-bottom:4px;
+    }
+
+    .l1 { background:var(--c1-bg); border-color:var(--c1-bd); --sc:var(--c1-bd); }
+    .l1 .cbox-tag { color:var(--c1-bd); } .l1 h4 { color:var(--c1-tx); }
+    .l2 { background:var(--c2-bg); border-color:var(--c2-bd); --sc:var(--c2-bd); }
+    .l2 .cbox-tag { color:var(--c2-bd); } .l2 h4 { color:var(--c2-tx); }
+    .l3 { background:var(--c3-bg); border-color:var(--c3-bd); --sc:var(--c3-bd); }
+    .l3 .cbox-tag { color:var(--c3-bd); } .l3 h4 { color:var(--c3-tx); }
+    .l4 { background:var(--c4-bg); border-color:var(--c4-bd); --sc:var(--c4-bd); }
+    .l4 .cbox-tag { color:var(--c4-bd); } .l4 h4 { color:var(--c4-tx); }
+    .l5 { background:var(--c5-bg); border-color:var(--c5-bd); --sc:var(--c5-bd); }
+    .l5 .cbox-tag { color:var(--c5-bd); }
+    .l5 h4, .l5 p { color:var(--c5-tx); }
+    .l5 .fi { background:rgba(255,255,255,0.07); color:#ff9090; }
+    .l5 .eff { color:var(--c5-tx); border-color:rgba(255,255,255,0.12); }
+
+    /* ════ PROGNOSIS TIMELINE ════ */
+    .timeline { margin:32px 0; }
+    .tl-row {
+      display:grid; grid-template-columns:90px 1fr 1fr;
+      gap:0; border-bottom:1px solid #e0ddd5;
+    }
+    .tl-row:first-child { border-top:1px solid #e0ddd5; }
+    .tl-year {
+      background:var(--navy); color:#fff;
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.78rem; font-weight:600;
+      padding:12px 14px; display:flex;
+      align-items:center; letter-spacing:0.05em;
+    }
+    .tl-cell {
+      padding:11px 16px; font-size:0.88rem; line-height:1.5;
+    }
+    .tl-cell.a { background:var(--scen-a-bg); border-right:1px solid #c0d4f5; }
+    .tl-cell.b { background:var(--scen-b-bg); }
+    .tl-head .tl-cell {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.65rem; letter-spacing:0.1em;
+      text-transform:uppercase; font-weight:600;
+      padding:9px 16px;
+    }
+    .tl-head .tl-cell.a { color:var(--scen-a-bd); }
+    .tl-head .tl-cell.b { color:var(--scen-b-bd); }
+
+    /* ════ DAMAGE METER ════ */
+    .dmeter { margin:4px 0 8px; }
+    .dmeter-bar {
+      height:8px; border-radius:4px; margin-top:4px;
+      background:linear-gradient(to right, var(--prog-0), var(--prog-25), var(--prog-50), var(--prog-75), var(--prog-100));
+      position:relative;
+    }
+    .dmeter-fill {
+      position:absolute; top:0; left:0; height:100%;
+      border-radius:4px; background:#fff; opacity:0.85;
+      transition:width 0.3s;
+    }
+    .dmeter-label {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.64rem; color:#666;
+    }
+
+    /* ════ WARN / NOTE / CRIT ════ */
+    .warn {
+      background:var(--warn-bg); border:2px solid var(--warn-bd);
+      border-radius:8px; padding:18px 24px; margin:22px 0;
+    }
+    .warn .wl {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.62rem; letter-spacing:0.16em;
+      text-transform:uppercase; color:#9a7000; margin-bottom:7px;
+    }
+    .warn p { font-size:0.93rem; margin:0; }
+
+    .note {
+      background:#f0f5ff; border:1px solid #9db4e0;
+      border-radius:8px; padding:16px 22px;
+      font-size:0.9rem; color:#1a2a44; margin:22px 0;
+    }
+    .note strong { color:var(--blue); }
+
+    .crit {
+      background:var(--crit-bg); border:2px solid var(--crit-bd);
+      border-radius:10px; padding:22px 28px; margin:28px 0;
+    }
+    .crit .cl {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.64rem; letter-spacing:0.2em;
+      text-transform:uppercase; color:var(--crit-bd); margin-bottom:9px;
+    }
+    .crit p { color:var(--crit-tx); font-size:0.93rem; margin-bottom:7px; }
+    .crit p:last-child { margin-bottom:0; }
+    .crit strong { color:#ff8a80; }
+
+    /* ════ TABLE ════ */
+    table {
+      width:100%; border-collapse:collapse;
+      margin:26px 0; font-size:0.86rem;
+      background:#fff; border-radius:8px; overflow:hidden;
+      box-shadow:0 3px 12px rgba(0,0,0,0.07);
+    }
+    th {
+      background:var(--navy); color:#fff;
+      padding:11px 15px; text-align:left;
+      font-family:'Source Serif 4',serif;
+      font-weight:600; font-size:0.87rem;
+    }
+    td { border:1px solid #e0ddd8; padding:9px 15px; vertical-align:top; }
+    tr:nth-child(even) td { background:#faf8f4; }
+    tr:hover td { background:#eef4ff; }
+    td code {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.77rem; background:#eee;
+      padding:1px 5px; border-radius:3px;
+    }
+    .vf { color:#b71c1c; font-weight:700; }
+    .vp { color:#e65100; font-weight:600; }
+    .vo { color:#1b5e20; font-weight:600; }
+
+    /* ════ LEGEND ════ */
+    .legend {
+      display:flex; flex-wrap:wrap; gap:12px;
+      margin:18px 0 28px;
+    }
+    .li {
+      display:flex; align-items:center; gap:7px;
+      font-size:0.81rem; font-family:'JetBrains Mono',monospace;
+    }
+    .ld { width:13px; height:13px; border-radius:3px; flex-shrink:0; }
+
+    /* ════ HEALTH GRID ════ */
+    .health-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:16px; margin:24px 0;
+    }
+    .hcard {
+      background:#fff; border:1px solid var(--border);
+      border-top:4px solid; border-radius:8px;
+      padding:16px 18px;
+    }
+    .hcard.h1 { border-top-color:#e53935; }
+    .hcard.h2 { border-top-color:#f57c00; }
+    .hcard.h3 { border-top-color:#7b1fa2; }
+    .hcard-title {
+      font-family:'Playfair Display',serif;
+      font-size:0.95rem; font-weight:700; margin-bottom:7px;
+    }
+    .hcard.h1 .hcard-title { color:#b71c1c; }
+    .hcard.h2 .hcard-title { color:#e65100; }
+    .hcard.h3 .hcard-title { color:#6a1b9a; }
+    .hcard p { font-size:0.85rem; margin:0; color:#333; }
+
+    /* ════ REPAIR COST ════ */
+    .cost-grid {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:14px; margin:24px 0;
+    }
+    .cost-card {
+      background:#fff; border:1px solid var(--border);
+      border-radius:8px; padding:16px 16px;
+      text-align:center;
+    }
+    .cost-num {
+      font-family:'Playfair Display',serif;
+      font-size:1.6rem; font-weight:700;
+      line-height:1.1; margin-bottom:6px;
+    }
+    .cost-label { font-size:0.82rem; color:#666; line-height:1.4; }
+    .cost-card.c1 .cost-num { color:#2e7d32; }
+    .cost-card.c2 .cost-num { color:#f57c00; }
+    .cost-card.c3 .cost-num { color:#c62828; }
+    .cost-card.c4 .cost-num { color:#7b0000; }
+
+    /* ════ SEPARATOR ════ */
+    hr.sep { border:none; border-top:1px solid var(--border); margin:48px 0; }
+
+    /* ════ FOOTER ════ */
+    footer {
+      background:var(--navy); color:rgba(255,255,255,0.48);
+      text-align:center; padding:28px 24px;
+      font-size:0.75rem; font-family:'JetBrains Mono',monospace;
+      letter-spacing:0.06em; line-height:1.9;
+    }
+    footer span { color:var(--gold); }
+
+    /* ════ MOBILE ════ */
+    @media(max-width:720px){
+      .masthead { padding:28px 18px 24px; text-align:center; }
+      .masthead h1 { font-size:1.3rem; text-align:center; }
+      .masthead-sub { text-align:center; }
+      .alert-top { padding:18px 18px; font-size:1.05rem; text-align:center; }
+      .content { padding:22px 16px 56px; }
+      h2 { font-size:1.08rem; flex-wrap:wrap; }
+      .scenario-grid,.myth-reality,.health-grid,.cost-grid { grid-template-columns:1fr; }
+      .cascade-flow { padding-left:22px; }
+      .cascade-flow::before { left:8px; }
+      .cs::before { left:-20px; width:10px; height:10px; }
+      .tl-row { grid-template-columns:70px 1fr; }
+      .tl-head .tl-cell.a::after { content:' (A)'; }
+      .tl-cell.b { display:none; }
+      table { display:block; overflow-x:auto; }
+      .fb { overflow-x:auto; }
+      .cbox .sc-pair { grid-template-columns:1fr; }
+      .author-block { flex-direction:column; align-items:center; text-align:center; }
+    }
+
+
+    /* ════ FIRST PRINCIPLES BOX ════ */
+    .fp-thinking {
+      background: #1a1e2e;
+      border: 1px solid #3a4a7a;
+      border-left: 5px solid #6a8abf;
+      border-radius: 8px;
+      margin-top: 22px;
+      overflow: hidden;
+      text-align: left;
+    }
+    .fp-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.64rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 600;
+      color: #7a9fd4;
+      padding: 10px 20px 8px;
+      border-bottom: 1px solid rgba(106,138,191,0.2);
+    }
+    .fp-body {
+      padding: 18px 22px 20px;
+    }
+    .fp-body > p {
+      color: #c8cfe8;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+    .fp-body strong { color: #9ab4e0; }
+    .fp-body em { color: #d4daf0; }
+    .fp-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .fp-pillar {
+      background: rgba(106,138,191,0.08);
+      border: 1px solid rgba(106,138,191,0.2);
+      border-radius: 6px;
+      padding: 12px 14px;
+    }
+    .fp-pillar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.88rem; font-weight: 700;
+      color: #8aaad4; margin-bottom: 6px;
+    }
+    .fp-pillar p {
+      font-size: 0.83rem; color: #b0bedd;
+      margin: 0; line-height: 1.55;
+    }
+    .fp-example {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(106,138,191,0.18);
+      border-radius: 6px;
+      padding: 13px 16px;
+      margin: 14px 0;
+    }
+    .fp-ex-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #7a9fd4;
+      margin-bottom: 7px;
+    }
+    .fp-example p {
+      font-size: 0.86rem; color: #b8c4e0;
+      margin: 0; line-height: 1.6;
+    }
+    .fp-steps {
+      margin: 14px 0 12px;
+    }
+    .fp-step {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(106,138,191,0.1);
+      font-size: 0.86rem; color: #b8c4e0;
+      line-height: 1.5;
+    }
+    .fp-step:last-child { border-bottom: none; }
+    .fp-step-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(106,138,191,0.18);
+      border: 1px solid #6a8abf;
+      color: #7a9fd4;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .fp-closing {
+      font-size: 0.87rem; color: #a0aed0;
+      font-style: italic; line-height: 1.65;
+      margin: 12px 0 0 !important;
+      padding-top: 12px;
+      border-top: 1px solid rgba(106,138,191,0.15);
+    }
+    @media(max-width:720px){
+      .fp-pillars { grid-template-columns: 1fr; }
+    }
+
+    /* ════ AUTHOR BLOCK — REDESIGNED ════ */
+    .author-block {
+      margin-top: 40px;
+      padding-top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* Prominent NAME BANNER with background */
+    .author-name-banner {
+      position: relative;
+      display: inline-block;
+      margin: 0 auto 18px;
+    }
+    .author-name-banner::before {
+      content: '';
+      position: absolute;
+      inset: -8px -28px;
+      background: linear-gradient(135deg, rgba(201,148,10,0.22), rgba(201,148,10,0.08));
+      border: 1px solid rgba(201,148,10,0.45);
+      border-radius: 4px;
+      z-index: 0;
+    }
+    .author-name-text {
+      position: relative;
+      z-index: 1;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 18px rgba(201,148,10,0.5), 0 0 40px rgba(201,148,10,0.2);
+    }
+
+    .author-details {
+      text-align: center;
+    }
+    .author-role {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.55;
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+    .author-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.12em;
+      color: var(--gold);
+    }
+
+    .origin-note {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+      margin-top: 20px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
+      line-height: 1.65;
+      max-width: 820px;
+      text-align: left;
+    }
+    .origin-note strong { color: rgba(255,255,255,0.92); font-style: normal; }
+
+    /* ════ SD SPECTRUM ════ */
+    .sd-spectrum { background:#fff; border:1px solid var(--border); border-radius:8px; padding:22px 26px; margin:22px 0; }
+    .sd-spectrum-title { font-family:'JetBrains Mono',monospace; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+    .sd-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+    .sd-row-label { font-size:0.82rem; width:230px; flex-shrink:0; line-height:1.3; }
+    .sd-row-bar-wrap { flex:1; background:#f0ede6; border-radius:4px; height:20px; overflow:hidden; }
+    .sd-row-bar { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:8px; font-family:'JetBrains Mono',monospace; font-size:0.68rem; font-weight:600; color:#fff; white-space:nowrap; }
+    .sd-row-val { font-family:'JetBrains Mono',monospace; font-size:0.76rem; font-weight:600; width:90px; text-align:right; flex-shrink:0; }
+    .sd-req { background:#1a237e; color:#fff; border-radius:8px; padding:20px 26px; margin:22px 0; }
+    .sd-req .sdr-title { font-family:'JetBrains Mono',monospace; font-size:0.67rem; letter-spacing:0.18em; text-transform:uppercase; color:#82b1ff; margin-bottom:10px; }
+    .sd-req p { color:#e8eaf6; font-size:0.92rem; margin-bottom:8px; }
+    .sd-req p:last-child { margin-bottom:0; }
+    .sd-req strong { color:#ffd740; }
+    .myth-chain { margin:24px 0; }
+    .mc-item { display:flex; gap:14px; align-items:flex-start; padding:14px 16px; margin-bottom:2px; position:relative; }
+    .mc-item::before { content:''; position:absolute; left:27px; top:48px; bottom:-16px; width:2px; background:linear-gradient(to bottom,#e53935,#b71c1c); z-index:0; }
+    .mc-item:last-child::before { display:none; }
+    .mc-num { width:28px; height:28px; border-radius:50%; background:#e53935; color:#fff; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:0.78rem; font-weight:600; position:relative; z-index:1; }
+    .mc-body { flex:1; }
+    .mc-body .mc-title { font-family:'Playfair Display',serif; font-size:0.97rem; font-weight:700; color:#7f0000; margin-bottom:4px; }
+    .mc-body p { font-size:0.88rem; color:#333; margin:0; }
+    .scenario-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin:32px 0; }
+    .scen-c { background:#f5f0ff; border-color:#6a1b9a; border-radius:10px; border-top:5px solid #6a1b9a; padding:24px 26px; }
+    .scen-c .scen-label { color:#6a1b9a; font-family:'JetBrains Mono',monospace; font-size:0.63rem; letter-spacing:0.17em; text-transform:uppercase; font-weight:600; margin-bottom:8px; }
+    .scen-c h3 { color:#3d006e; margin-top:0; margin-bottom:10px; font-style:normal; }
+    .scen-c p { font-size:0.91rem; color:#3d006e; }
+    @media(max-width:720px){ .scenario-grid-3,.sd-row { flex-wrap:wrap; } .scenario-grid-3 { grid-template-columns:1fr; } .sd-row-label { width:100%; } }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Mechanizmy Transportu Wody w Strefie Okapowej</h1>
-            <div class="subtitle">Analiza zjawisk nieintuicyjnych w kontekście podciekania pod pas podrynnowy</div>
-            <div class="meta">Opracowanie naukowo-techniczne | Inżynieria Budowlana | 2026</div>
-        </header>
 
-        <div class="abstract">
-            <h2>Abstrakt</h2>
-            <p>Niniejsze opracowanie przedstawia kompleksową analizę mechanizmów transportu wody w strefie okapowej budynku, ze szczególnym uwzględnieniem zjawisk nieintuicyjnych prowadzących do podciekania wilgoci pod pas podrynnowy oraz zawilgocenia elewacji. Praca ma charakter interdyscyplinarny, łącząc zagadnienia z zakresu mechaniki płynów, fizykochemii powierzchni, materiałoznawstwa budowlanego oraz aerodynamiki obiektu budowlanego. Przedstawiono teoretyczne podstawy zjawisk napięcia powierzchniowego, kapilarności, efektu Coandă oraz oddziaływania warstwy przyściennej na transport kropel wody. Wykazano, że tradycyjne podejście do projektowania detali okapowych, oparte wyłącznie na grawitacyjnym spływie wody, jest niewystarczające i prowadzi do systematycznych awarii wilgotnościowych. Szczególną uwagę poświęcono identyfikacji luk kompetencyjnych w branży wykonawczej oraz mechanizmów powstawania błędów projektowych wynikających z niepełnego zrozumienia fizyki procesów. Praca zawiera analizę matematyczną kluczowych zjawisk, studium przypadków awarii oraz wnioski praktyczne dla projektowania i wykonawstwa.</p>
-        </div>
-
-        <main>
-            <h2>1. Wprowadzenie: Paradoks prostoty i złożoności</h2>
-            
-            <p>W inżynierii budowlanej istnieje osobliwy paradoks: pozornie najprostsze zjawiska fizyczne – takie jak spływ wody po nachylonej powierzchni – w rzeczywistości charakteryzują się niezwykłą złożonością i wielością mechanizmów, które wymykają się intuicyjnemu zrozumieniu. <span class="highlight">Woda nie ścieka prostolinijnie</span>, nie podąża wyłącznie za grawitacją, nie respektuje granic wyznaczonych przez projektanta. Przeciwnie – woda znajduje każdą szczelinę, wykorzystuje każdą nieszczelność, porusza się w kierunkach pozornie niemożliwych, ignorując nachylenia i bariery.</p>
-
-            <p>Problem podciekania wody pod pas podrynnowy i spływu po elewacji budynku nie jest kwestią pojedynczego błędu wykonawczego czy przypadkowej niedoskonałości detalu. Jest to <strong>systematyczna manifestacja głębszych problemów</strong>: luk w edukacji technicznej, niewłaściwego transferu wiedzy teoretycznej do praktyki budowlanej, oraz – co szczególnie istotne – <em>fundamentalnego nieporozumienia dotyczącego natury zjawisk fizycznych zachodzących w skali mikrometrycznej i mezoskopowej</em>.</p>
-
-            <div class="insight">
-                <h4>Kluczowe pytanie badawcze</h4>
-                <p>Dlaczego woda spływająca z pasa podrynnowego, mimo teoretycznego oddalenia od ściany (poprzez wystawanie okapu), w praktyce zawilgaca elewację na znacznej wysokości poniżej linii okapowej? Jakie mechanizmy fizyczne odpowiadają za ten pozornie niemożliwy transport wilgoci <em>do góry</em> i <em>w bok</em>, wbrew grawitacji i wbrew geometrii detalu?</p>
-            </div>
-
-            <h2>2. Fundamenty teoretyczne: Fizyka międzyfazowa wody</h2>
-
-            <h3>2.1. Napięcie powierzchniowe i zjawiska kapilarne</h3>
-
-            <p>Napięcie powierzchniowe wody (γ ≈ 72,8 mN/m w temperaturze 20°C) jest konsekwencją niezrównoważonych sił kohezyjnych działających na cząsteczki znajdujące się na granicy faz ciecz-gaz. Cząsteczki wody w objętości cieczy są otoczone symetrycznie przez inne cząsteczki i oddziaływania międzycząsteczkowe (wiązania wodorowe) równoważą się. Natomiast cząsteczki na powierzchni doświadczają niezrównoważonej siły wypadkowej skierowanej do wnętrza cieczy, co prowadzi do minimalizacji powierzchni międzyfazowej.</p>
-
-            <div class="equation">
-                W = γ · ΔA
-                <span class="equation-label">(1) Praca potrzebna do zwiększenia powierzchni międzyfazowej</span>
-            </div>
-
-            <p>Gdzie W – praca [J], γ – napięcie powierzchniowe [N/m], ΔA – zmiana powierzchni [m²].</p>
-
-            <div class="definition">
-                <strong>Definicja operacyjna:</strong> Napięcie powierzchniowe cieczy to praca potrzebna do zwiększenia powierzchni międzyfazowej o jednostkę przy stałej temperaturze i ciśnieniu. W kontekście budowlanym, napięcie powierzchniowe jest siłą, która powoduje, że woda „przylega" do powierzchni materialnych i może przemieszczać się wzdłuż krawędzi i wąskich szczelin.
-            </div>
-
-            <h4>2.1.1. Kąt zwilżania i energia powierzchniowa ciała stałego</h4>
-
-            <p>Zachowanie wody na powierzchni materiału budowlanego opisuje równanie Younga:</p>
-
-            <div class="equation">
-                γ<sub>SG</sub> = γ<sub>SL</sub> + γ<sub>LG</sub> · cos θ
-                <span class="equation-label">(2) Równanie Younga dla równowagi międzyfazowej</span>
-            </div>
-
-            <p>Gdzie γ<sub>SG</sub> – napięcie międzyfazowe ciało stałe-gaz, γ<sub>SL</sub> – napięcie międzyfazowe ciało stałe-ciecz, γ<sub>LG</sub> – napięcie międzyfazowe ciecz-gaz, θ – kąt zwilżania.</p>
-
-            <p>Materiały budowlane charakteryzują się różnymi wartościami kąta zwilżania:</p>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Materiał</th>
-                        <th>Kąt zwilżania θ [°]</th>
-                        <th>Charakter powierzchni</th>
-                        <th>Konsekwencje praktyczne</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Drewno (świeże)</td>
-                        <td>30-60</td>
-                        <td>Hydrofilowa</td>
-                        <td>Silne wchłanianie wody</td>
-                    </tr>
-                    <tr>
-                        <td>Tynk mineralny</td>
-                        <td>40-70</td>
-                        <td>Hydrofilowa</td>
-                        <td>Kapilarny transport wilgoci</td>
-                    </tr>
-                    <tr>
-                        <td>Blacha malowana</td>
-                        <td>60-90</td>
-                        <td>Umiarkowanie hydrofilowa</td>
-                        <td>Spływ możliwy, ale z adhezją</td>
-                    </tr>
-                    <tr>
-                        <td>Membrana WPP (nowa)</td>
-                        <td>90-110</td>
-                        <td>Słabo hydrofobowa</td>
-                        <td>Spływ kropel, ale możliwa adhezja brzegowa</td>
-                    </tr>
-                    <tr>
-                        <td>PVC/EPDM</td>
-                        <td>80-100</td>
-                        <td>Umiarkowanie hydrofobowa</td>
-                        <td>Ryzyko adhezji przy niskiej energii kinetycznej</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="warning">
-                <h4>Krytyczna obserwacja</h4>
-                <p><span class="critical">Żaden popularny materiał budowlany nie jest idealnie hydrofobowy</span> (θ > 150°). Oznacza to, że woda zawsze będzie wykazywała tendencję do adhezji do powierzchni materiałów stosowanych w konstrukcji pasa podrynnowego i elewacji. Przy niskich prędkościach spływu (małej energii kinetycznej kropli) siły adhezji mogą przeważać nad siłami grawitacyjnymi, prowadząc do "przyklejania się" wody do powierzchni.</p>
-            </div>
-
-            <h4>2.1.2. Wysokość kapilarnego podciągania</h4>
-
-            <p>W wąskich szczelinach między elementami konstrukcyjnymi (pas podrynnowy-ściana, deski-deski, blacha-drewno) zachodzi zjawisko kapilarnego podciągania wody. Wysokość słupa cieczy w kapilarze cylindrycznej można obliczyć z równania Juryna:</p>
-
-            <div class="equation">
-                h = (2γ · cos θ) / (ρ · g · r)
-                <span class="equation-label">(3) Równanie Juryna dla wysokości kapilarnego podciągania</span>
-            </div>
-
-            <p>Gdzie h – wysokość podciągania [m], γ – napięcie powierzchniowe [N/m], θ – kąt zwilżania [rad], ρ – gęstość cieczy [kg/m³], g – przyspieszenie ziemskie [m/s²], r – promień kapilary [m].</p>
-
-            <div class="phenomenon">
-                <h4>Przykład obliczeń: szczelina między pasem a ścianą</h4>
-                <p>Rozważmy typową szczelinę o szerokości 0,5 mm (5×10⁻⁴ m), która powstaje w wyniku skurczu termicznego drewna pasa podrynnowego:</p>
-                <ul>
-                    <li>γ = 0,0728 N/m (woda w 20°C)</li>
-                    <li>θ ≈ 50° (powierzchnia drewno-tynk) → cos θ ≈ 0,643</li>
-                    <li>ρ = 1000 kg/m³</li>
-                    <li>g = 9,81 m/s²</li>
-                    <li>r = 2,5×10⁻⁴ m (przyjmując szczelinę jako kapilarę cylindryczną)</li>
-                </ul>
-                <p><strong>Wysokość podciągania: h = (2 × 0,0728 × 0,643) / (1000 × 9,81 × 2,5×10⁻⁴) ≈ 0,038 m = 3,8 cm</strong></p>
-                <p>Oznacza to, że woda może być podciągana kapilarnie na wysokość <span class="highlight">prawie 4 centymetrów w górę</span> przez wąską szczelinę, całkowicie ignorując grawitację!</p>
-            </div>
-
-            <h3>2.2. Efekt Coandă: przyleganie strugi płynu do powierzchni</h3>
-
-            <p>Efekt Coandă (nazwany od rumuńskiego inżyniera Henri Coandă) polega na tendencji strugi płynu do przylegania i podążania wzdłuż wypukłej powierzchni, nawet gdy powierzchnia ta odchyla się od pierwotnego kierunku przepływu. Zjawisko to jest konsekwencją asymetrii pola ciśnień wokół strugi płynu znajdującej się w pobliżu powierzchni.</p>
-
-            <div class="insight">
-                <h4>Mechanizm fizyczny efektu Coandă</h4>
-                <p>Gdy struga wody spływa w pobliżu ściany, cząsteczki płynu przylegające do ściany są spowalniане przez tarcie, tworząc warstwę przyścienną o obniżonej prędkości. Zgodnie z równaniem Bernoulliego, obniżenie prędkości prowadzi do wzrostu ciśnienia statycznego. Jednocześnie, po stronie zewnętrznej strugi (oddalnej od ściany) prędkość jest wyższa, a ciśnienie niższe. Wynikowa różnica ciśnień wytwarza siłę działającą w kierunku ściany, "przyciskając" strugę do powierzchni.</p>
-            </div>
-
-            <p>W kontekście spływu wody z pasa podrynnowego, efekt Coandă manifestuje się w następujący sposób: struga wody spływająca z dolnej krawędzi pasa, zamiast opadać pionowo w dół (jak sugerowałaby intuicja grawitacyjna), ma tendencję do "przylegania" do dolnej powierzchni pasa, obiegania jego krawędzi, a następnie "przeskakiwania" na pionową powierzchnię ściany budynku, po której następnie spływa.</p>
-
-            <h4>2.2.1. Krytyczna liczba Reynoldsa dla oderwania strugi</h4>
-
-            <p>Czy struga wody odepchnie się od powierzchni, czy będzie do niej przylegać, zależy od liczby Reynoldsa przepływu oraz krzywizny powierzchni. Dla przepływu laminowego (Re < 2300) efekt Coandă jest bardzo silny. Dla przepływu turbulentnego (Re > 4000) struga ma większą tendencję do odrywania się od powierzchni, ale nadal może przylegać, jeśli krzywizna nie jest zbyt ostra.</p>
-
-            <div class="equation">
-                Re = (ρ · v · L) / μ
-                <span class="equation-label">(4) Liczba Reynoldsa dla przepływu warstwy wody</span>
-            </div>
-
-            <p>Gdzie ρ – gęstość wody [kg/m³], v – prędkość przepływu [m/s], L – charakterystyczna długość (grubość warstwy) [m], μ – lepkość dynamiczna wody [Pa·s].</p>
-
-            <div class="case-study">
-                <h4>Studium przypadku: Deszcz o natężeniu 5 mm/h</h4>
-                <p>Przyjmijmy typowy, umiarkowany opad o natężeniu 5 mm/h na powierzchnię dachu o nachyleniu 35°. Woda z powierzchni ok. 5 m² (szerokość połaci) schodzi do jednego punktu okapu.</p>
-                <ul>
-                    <li>Objętościowe natężenie spływu: Q = 5 mm/h × 5 m² = 25 l/h = 6,94×10⁻⁶ m³/s</li>
-                    <li>Zakładając, że woda spływa warstwą o szerokości 10 cm (0,1 m): v = Q / (szerokość × grubość warstwy)</li>
-                    <li>Przyjmując grubość warstwy δ ≈ 1 mm = 10⁻³ m: v = 6,94×10⁻⁶ / (0,1 × 10⁻³) = 0,0694 m/s ≈ 7 cm/s</li>
-                    <li>Liczba Reynoldsa: Re = (1000 × 0,0694 × 10⁻³) / (10⁻³) ≈ 69</li>
-                </ul>
-                <p><strong>Wniosek:</strong> Przepływ jest głęboko laminowy (Re << 2300). W takich warunkach efekt Coandă jest <span class="highlight">ekstremalnie silny</span>, a woda będzie "przylegać" do każdej napotkanej powierzchni, obiegając krawędzie i zmieniając kierunek ruchu zgodnie z geometrią elementów.</p>
-            </div>
-
-            <h3>2.3. Aerodynamika budynku i warstwa przyścienna</h3>
-
-            <p>Zachowanie kropel wody w powietrzu w pobliżu elewacji budynku nie jest tylko kwestią grawitacji, ale również <strong>oddziaływania pola przepływu powietrza</strong> wokół obiektu budowlanego. Budynek stanowi przeszkodę w przepływie mas powietrza, co prowadzi do powstawania charakterystycznych wzorów cyrkulacji i stref zwiększonej oraz obniżonej prędkości.</p>
-
-            <h4>2.3.1. Strefa nawietrzna i strefa zawietrzna</h4>
-
-            <p>Na stronie nawietrznej budynku (tej, od której wieje wiatr) strumień powietrza napotyka na przeszkodę w postaci ściany. Część powietrza jest spowolniana, tworząc strefę podwyższonego ciśnienia statycznego. Ta strefa rozciąga się na wysokość rzędu 1-2 wysokości budynku od fundamentu w górę. <em>Krople wody spływające po elewacji w tej strefie są „przyciskane" do ściany przez nadciśnienie powietrza.</em></p>
-
-            <p>Na stronie zawietrznej (za budynkiem, względem kierunku wiatru) powstaje strefa obniżonego ciśnienia i wirów. W tej strefie powietrze ma tendencję do cyrkulacji, z ruchem wstecznym w kierunku budynku w dolnej części. <em>Krople wody mogą być unoszone przez wiry i osadzane na elewacji z dala od pierwotnego miejsca spływu.</em></p>
-
-            <h4>2.3.2. Warstwa przyścienna i efekt "zasysania" kropel</h4>
-
-            <p>Bezpośrednio przy powierzchni ściany budynku, niezależnie od strony nawietrznej czy zawietrznej, istnieje <strong>warstwa przyścienna</strong> (boundary layer) o grubości rzędu kilku centymetrów, w której prędkość powietrza stopniowo maleje od wartości przepływu swobodnego do zera przy samej ścianie (warunek brzegowy „no-slip").</p>
-
-            <div class="phenomenon">
-                <h4>Zjawisko: Migracja kropel w warstwie przyściennej</h4>
-                <p>Rozważmy kroplę wody o średnicy d = 0,5 mm, która odrywa się z dolnej krawędzi pasa podrynnowego odległego od ściany o 10 cm. W warunkach bezwietrznych, kropla spadałaby pionowo w dół pod wpływem grawitacji. Jednak w obecności wiatru o prędkości nawet umiarkowanej (v<sub>∞</sub> = 5 m/s w przepływie swobodnym), gradient prędkości w warstwie przyściennej wytwarza siłę wleczenia (drag force) działającą na kroplę w kierunku poziomym.</p>
-                <p>Dla kropli o małej średnicy (<1 mm), stosunek siły aerodynamicznej do siły grawitacji może wynosić:</p>
-                <div class="equation">
-                    F<sub>drag</sub> / F<sub>gravity</sub> ~ (C<sub>D</sub> · ρ<sub>air</sub> · v² · A) / (ρ<sub>water</sub> · g · V)
-                </div>
-                <p>Gdzie C<sub>D</sub> – współczynnik oporu (~0,4 dla kuli), A – powierzchnia czołowa kropli, V – objętość kropli.</p>
-                <p><strong>Rezultat:</strong> Dla małych kropel (d < 1 mm) przy wietrze powyżej 3-4 m/s, siły aerodynamiczne mogą być <span class="highlight">porównywalne lub większe od siły grawitacji</span>, co prowadzi do dryftu kropli w kierunku ściany i ich osadzania na elewacji, nawet jeśli pas podrynnowy jest teoretycznie odsunięty od ściany.</p>
-            </div>
-
-            <h2>3. Charakterystyka materiałów pasa podrynnowego</h2>
-
-            <h3>3.1. Drewno i materiały drewnopochodne</h3>
-
-            <p>Drewno jest materiałem higroskopijnym o złożonej strukturze komórkowej, charakteryzującym się anizotropią właściwości mechanicznych i wilgotnościowych. W warunkach ekspozycji na cykliczne zawilgocenie, drewno ulega sekwencji procesów degradacyjnych:</p>
-
-            <ul>
-                <li><strong>Pęcznienie i skurcz:</strong> Zmiana zawilgocenia drewna o 1% powoduje zmianę wymiarów w kierunku promieniowym i styczny o ok. 0,15-0,3%. Dla typowej deski o szerokości 15 cm, zmiana zawilgocenia z 12% (stan powietrzno-suchy) do 25% (stan nawilgocony) prowadzi do pęcznienia o ok. 5-8 mm. Takie zmiany wymiarów powodują otwieranie się szczelin w łączach.</li>
-                <li><strong>Degradacja biologiczna:</strong> Przy zawilgoceniu powyżej 20% i temperaturze powyżej 5°C następuje rozwój grzybów wywołujących zgniliznę drewna. Proces ten jest nieodwracalny i prowadzi do utraty wytrzymałości mechanicznej.</li>
-                <li><strong>Fotodegradacja i erozja powierzchni:</strong> Promienio UV degraduje ligninę w zewnętrznych warstwach drewna, prowadząc do szarzenia i erozji powierzchni. Cykliczne zawilgocenie i wysychanie przyspiesza ten proces.</li>
-            </ul>
-
-            <div class="warning">
-                <h4>Implikacje dla funkcji pasa podrynnowego</h4>
-                <p>Drewno <span class="critical">nie nadaje się do stałego kontaktu z wodą</span> w warunkach zewnętrznych bez zaawansowanych systemów ochrony (impregnacja ciśnieniowa, systemy powlekowe). Nawet z ochroną, trwałość drewna narażonego na cykliczne zawilgocenie jest ograniczona do 15-25 lat w warunkach klimatu umiarkowanego.</p>
-            </div>
-
-            <h3>3.2. Nieszczelności łączeń – analiza przyczyn i konsekwencji</h3>
-
-            <p>Pas podrynnowy, niezależnie od materiału, jest zawsze elementem segmentowym, składanym z odcinków. Wynika to z:</p>
-
-            <ul>
-                <li>Standardowych wymiarów materiałów dostępnych na rynku (deski: 3-5 m, profile aluminiowe: 3-6 m)</li>
-                <li>Konieczności wykonania narożników (połączenie dwóch lub trzech płaszczyzn)</li>
-                <li>Wymogów dylatacyjnych dla długich odcinków elewacji</li>
-            </ul>
-
-            <p>Łączenia elementów pasa podrynnowego są wykonywane poprzez:</p>
-
-            <ol>
-                <li><strong>Łączenie mechaniczne:</strong> wkręty, gwoździe, klamry – przebijają materiał, tworząc miejsca potencjalnych przecieków</li>
-                <li><strong>Łączenie klejowe:</strong> kleje konstrukcyjne, silikon – wymagają idealnie przygotowanej powierzchni i są wrażliwe na ruchy termiczne</li>
-                <li><strong>Łączenia wtykowe:</strong> systemy profile-profile – zawsze pozostawiają mikroszczelinę w miejscu łączenia</li>
-            </ol>
-
-            <div class="phenomenon">
-                <h4>Niezerowa przepuszczalność łączy – fundamentalna prawda inżynierii</h4>
-                <p>W inżynierii materiałowej obowiązuje zasada, że <span class="highlight">każde łącze ma niezerową przepuszczalność</span> dla czynników zewnętrznych (woda, powietrze, para wodna). Nawet łącza spawane, zaprojektowane jako szczelne, wykazują pewną przepuszczalność na poziomie mikrostruktury. Łącza wykonywane na budowie, w warunkach zmiennych (temperatura, wilgotność, czystość powierzchni), są obarczone istotnymi niedoskonałościami.</p>
-                <p>Dla łączy mechanicznych w pasie podrynnowym można przyjąć, że <strong>efektywna szczelina w miejscu łączenia wynosi 0,1-0,5 mm</strong>, nawet jeśli wizualnie łącze wygląda na szczelne. Przy długości łączenia np. 15 cm, daje to efektywną powierzchnię przenikania wody: A = 0,15 m × 0,0005 m = 7,5×10⁻⁵ m². Przy różnicy ciśnień nawet 10 Pa (wywołanej przez wiatr), natężenie przepływu przez taką szczelinę może wynosić setki mililitrów na godzinę.</p>
-            </div>
-
-            <h2>4. Mechanizm awarii: Sekwencja zdarzeń prowadzących do zawilgocenia</h2>
-
-            <h3>4.1. Faza inicjacji: Pierwsze zawilgocenie</h3>
-
-            <p>Scenariusz rozpoczyna się w momencie, gdy woda z membrany wstępnego krycia, papy lub innego materiału pokrycia dociera do dolnej krawędzi, która kończy się nad pasem podrynnowym lub jest na niego zawinięta. W typowym deszczu o natężeniu 3-7 mm/h, woda spływa warstwą o grubości 0,5-2 mm. Prędkość spływu jest niska (5-15 cm/s), co oznacza przepływ głęboko laminowy.</p>
-
-            <p><strong>Krok 1: Adhezja wody do pasa.</strong> Woda docierająca na pas podrynnowy nie spływa natychmiast w dół. Nawet jeśli pas jest wykonany z materiału o umiarkowanej hydrofobowości (np. malowana blacha), przy niskiej energii kinetycznej kropel (vaudać < 0,5 m/s) siły adhezji przeważają nad siłami inercji. Woda "przykleја się" do powierzchni pasa.</p>
-
-            <p><strong>Krok 2: Migracja wzdłuż krawędzi.</strong> Zgodnie z efektem Coandă, woda nie opuszcza pasa w miejscu pierwotnego kontaktu, lecz migruje wzdłuż dolnej krawędzi pasa w kierunku miejsca najmniejszego oporu. Jeśli pas jest lekko nachylony w kierunku rynny, woda podąża tym kierunkiem. Jednak nawet przy idealnie poziomym pasie, nierówności powierzchni tworzą preferencyjne ścieżki spływu.</p>
-
-            <p><strong>Krok 3: Penetracja łączeń.</strong> Gdy woda dociera do miejsca łączenia dwóch elementów pasa (styk desek, połączenie narożnika), napięcie powierzchniowe i kapilarność powodują, że woda jest wciągana w szczelinę łączenia. Szczelina o szerokości 0,2 mm działa jak kapilara, podciągając wodę na wysokość 2-3 cm <em>w górę</em>, całkowicie ignorując grawitację. Woda przedostaje się przez łączenie do wnętrza konstrukcji okapu.</p>
-
-            <h3>4.2. Faza propagacji: Rozwój zawilgocenia</h3>
-
-            <p>Po przedostaniu się wody przez łączenie pasa, wilgoć dociera do:</p>
-
-            <ul>
-                <li><strong>Końcówek krokwi:</strong> Zwykle są to cięcia poprzeczne drewna, gdzie odsłonięte są naczynia drewna. Kapilarne podciąganie wody w kierunku wzdłuż włókien drewna może osiągać wysokość 10-30 cm w ciągu kilku godzin.</li>
-                <li><strong>Deskowania okapu:</strong> Deski przylegające do pasa podrynnowego od góry ulegają zawilgoceniu. Woda migruje wzdłuż włókien drewna oraz przez szczeliny między deskami.</li>
-                <li><strong>Ściany budynku:</strong> Szczelina między pasem podrynnowym a ścianą (konieczna ze względu na ruchy termiczne) staje się drogą migracji wilgoci. Woda wciągana kapilarnie do tej szczeliny zawilgaca tynk, dociera do warstw ocieplenia oraz penetruje mur.</li>
-            </ul>
-
-            <div class="warning">
-                <h4>Efekt kumulacji wilgoci</h4>
-                <p>Kluczowym aspektem jest to, że zawilgocenie nie jest procesem jednorazowym. Każdy opad deszczu dostarcza nową porcję wody do systemu. Jeśli tempo dostarczania wilgoci przewyższa tempo jej odparowania i odprowadzenia, dochodzi do <span class="critical">kumulacji wilgoci w konstrukcji</span>. Po kilku miesiącach lub latach, zawilgocenie osiąga poziom krytyczny, przy którym rozpoczyna się widoczna degradacja materiałów.</p>
-            </div>
-
-            <h3>4.3. Faza manifestacji: Widoczne uszkodzenia</h3>
-
-            <p>Konsekwencje długotrwałego zawilgocenia manifestują się w postaci:</p>
-
-            <ul>
-                <li><strong>Zgnilizna drewna:</strong> Końcówki krokwi i deskowanie ulegają gniciu. Utrata wytrzymałości mechanicznej może prowadzić do lokalnego zapada konstrukcji dachu.</li>
-                <li><strong>Korozja elementów metalowych:</strong> Wieszaki krokwi, gwoździe, śruby ulegają korozji. W ekstremalnych przypadkach może dojść do utraty nośności połączeń.</li>
-                <li><strong>Zawilgocenie i odspojenie tynku:</strong> Woda penetrująca przez szczelinę pas-ściana zawilgaca tynk od tyłu. Cykliczne zamarzanie zawilgoconego tynku prowadzi do jego odspojenia i odpadania.</li>
-                <li><strong>Zawilgocenie ocieplenia:</strong> W budynkach docieplonych, wilgoć penetruje do warstwy ocieplenia (styropian, wełna mineralna), drastycznie obniżając jej właściwości izolacyjne termiczne.</li>
-                <li><strong>Rozwój pleśni i grzybów:</strong> W pomieszczeniach wewnętrznych, w miejscach mostków termicznych lub bezpośrednio na krokwiach widocznych od wnętrza, rozwija się pleśń, stanowiąca zagrożenie zdrowotne dla mieszkańców.</li>
-            </ul>
-
-            <h2>5. Spływ wody po elewacji: Fenomenologia zjawiska</h2>
-
-            <h3>5.1. Dlaczego woda spływa po ścianie, mimo odstępu pasa od elewacji?</h3>
-
-            <p>Jednym z najczęstszych nieporozumień w projektowaniu detali okapowych jest przekonanie, że jeśli pas podrynnowy jest odsunięty od ściany (np. wystaje 5-10 cm), to woda z niego spadająca będzie opadać pionowo w dół, nie zawilgacając elewacji. To założenie jest błędne z kilku powodów:</p>
-
-            <h4>5.1.1. Efekt Coandă w skali makroskopowej</h4>
-
-            <p>Jak opisano wcześniej, struga wody spływająca z dolnej krawędzi pasa ma tendencję do "przylegania" do dolnej powierzchni pasa, obiegania krawędzi, a następnie "przeskakiwania" na ścianę budynku. Ten efekt jest szczególnie silny przy niskich natężeniach opadu, gdy prędkość spływu jest mała.</p>
-
-            <div class="case-study">
-                <h4>Obserwacja terenowa</h4>
-                <p>Podczas oględzin obiektów budowlanych można zaobserwować charakterystyczne ślady spływu wody na elewacji bezpośrednio pod linią okapową, mimo że pas podrynnowy jest odsunięty od ściany. Ślady te mają formę pionowych smug zabrudzenia, odpowiadających miejscom, gdzie woda spływała przez dłuższy okres. Analiza mikroskopowa powierzchni elewacji w tych miejscach ujawnia ślady erozji tynku oraz osadzonych zanieczyszczeń atmosferycznych.</p>
-            </div>
-
-            <h4>5.1.2. Aerozol wodny generowany przez uderzenie kropli o pas</h4>
-
-            <p>Gdy krople wody spadają z membrany na pas podrynnowy, zderzenie to nie jest całkowicie plastyczne. Część energii kinetycznej kropli jest przekształcana w energię powierzchniową, prowadząc do rozprysku i generacji mikrokropel aerozolu wodnego. Te mikrokrople (<100 μm) są na tyle lekkie, że mogą być unoszone przez najsłabsze prądy powietrzne i osadzane na elewacji w pobliżu miejsca generacji.</p>
-
-            <h4>5.1.3. Transport kropel przez wiatr w warstwie przyściennej</h4>
-
-            <p>Jak opisano w sekcji 2.3.2, warstwa przyścienna powietrza w pobliżu ściany budynku wytwarza gradient prędkości, który działa na krople wody jak siła wleczenia, przyciskając je do ściany. Dla małych kropel (średnica < 1 mm), stosunkowo niewielkie prędkości wiatru (3-5 m/s) wystarczają, aby przekierować trajektorię kropli i osadzić ją na elewacji.</p>
-
-            <div class="phenomenon">
-                <h4>Model matematyczny: Trajektoria kropli w przepływie wiatrowym</h4>
-                <p>Trajektorię kropli wody spadającej w obecności poziomego wiatru można opisać układem równań różniczkowych:</p>
-                <div class="equation">
-                    m · dv<sub>x</sub>/dt = -½ · C<sub>D</sub> · ρ<sub>air</sub> · A · (v<sub>x</sub> - u)² · sgn(v<sub>x</sub> - u)
-                    <br>
-                    m · dv<sub>y</sub>/dt = -m · g - ½ · C<sub>D</sub> · ρ<sub>air</sub> · A · v<sub>y</sub>² · sgn(v<sub>y</sub>)
-                </div>
-                <p>Gdzie m – masa kropli, v<sub>x</sub>, v<sub>y</sub> – prędkości kropli w kierunkach poziomym i pionowym, u – prędkość wiatru, C<sub>D</sub> – współczynnik oporu, A – powierzchnia czołowa kropli.</p>
-                <p><strong>Symulacja numeryczna dla typowych warunków:</strong></p>
-                <ul>
-                    <li>Średnica kropli: d = 0,5 mm → masa m = 6,5×10⁻⁸ kg</li>
-                    <li>Prędkość wiatru: u = 5 m/s (umiarkowany wiatr)</li>
-                    <li>Odstęp pasa od ściany: 8 cm</li>
-                    <li>Wysokość spadania: 30 cm (do punktu na elewacji poniżej linii okapu)</li>
-                </ul>
-                <p><strong>Wynik:</strong> Kropla osiąga ścianę w odległości 12 cm w pionie poniżej linii okapu. <span class="highlight">Odstęp 8 cm nie zapobiega zawilgoceniu elewacji.</span> Przy silniejszym wietrze (>7 m/s), krople mogą być osadzane na wysokości zbliżonej do linii okapu lub nawet powyżej.</p>
-            </div>
-
-            <h3>5.2. Kumulatywny efekt zawilgocenia elewacji</h3>
-
-            <p>Pojedyncze zawilgocenie elewacji w wyniku deszczu nie jest problematyczne, jeśli elewacja jest wykonana z materiałów o odpowiedniej paroprzepuszczalności i może szybko wyschnąć. Problem pojawia się, gdy zawilgocenie jest systematyczne i powtarzalne. W klimacie umiarkowanym, z około 150-180 dniami z opadem rocznie, elewacja w strefie okapu może być zawilgacana kilkaset razy w ciągu roku.</p>
-
-            <p>Jeśli tempo zawilgacania przewyższa tempo wysychania (co jest szczególnie prawdopodobne w okresie jesienno-zimowym, gdy temperatura jest niska i wilgotność powietrza wysoka), dochodzi do <strong>kumulacji wilgoci w warstwach elewacji</strong>. Efekty tego procesu obejmują:</p>
-
-            <ul>
-                <li><strong>Biologiczne zarastanie:</strong> Rozszerzenia mikroglonów, mchów, porostów na zawilgoconej powierzchni tynku, szczególnie w miejscach zacienienionych.</li>
-                <li><strong>Degradacja powłok malarskich:</strong> Odspajanie, łuszczenie, pęcherzenie farby na zawilgoconym podłożu.</li>
-                <li><strong>Wykwity solne:</strong> Sole rozpuszczalne w wodzie (siarczany, chlorki) migrują wraz z wilgocią i krystalizują na powierzchni, tworząc białe wykwity. Krystalizacja soli w porach tynku (subflorescencja) prowadzi do destrukcji mikrostruktury.</li>
-                <li><strong>Degradacja mrozowa:</strong> Cykliczne zamarzanie zawilgoconej warstwy tynku powoduje powstawanie mikropęknięć i stopniowe rozwarstwianie.</li>
-            </ul>
-
-            <h2>6. Luki kompetencyjne w branży: Analiza przyczyn systemowych</h2>
-
-            <h3>6.1. Edukacja techniczna a praktyka budowlana</h3>
-
-            <p>Jednym z fundamentalnych problemów prowadzących do systematycznych błędów w wykonawstwie detali okapowych jest <strong>dyskoneksja między edukacją teoretyczną a praktyką budowlaną</strong>. Wiedza na temat mechaniki płynów, fizykochemii powierzchni i materiałoznawstwa jest przekazywana w ramach edukacji inżynierskiej na poziomie akademickim, ale rzadko dociera do pracowników branży wykonawczej – dekarzy, monterów, brygadzistów.</p>
-
-            <div class="insight">
-                <h4>Kultura "to zawsze tak robiliśmy"</h4>
-                <p>W branży budowlanej dominuje kultura przekazu wiedzy praktycznej w formie mistrz-uczeń, gdzie młodsi pracownicy uczą się przez obserwację i naśladowanie starszych kolegów. System ten skutecznie przekazuje umiejętności manualne, ale jest nieefektywny w przekazywaniu wiedzy teoretycznej i zrozumienia mechanizmów fizycznych. W rezultacie, błędy projektowe i wykonawcze są powielane przez pokolenia, gdyż brak jest mechanizmu krytycznej oceny i aktualizacji praktyk w świetle nowej wiedzy.</p>
-            </div>
-
-            <h3>6.2. Nierozpoznawanie zjawisk nieintuicyjnych</h3>
-
-            <p>Kluczowym problemem jest to, że zjawiska opisane w niniejszym opracowaniu – efekt Coandă, kapilarność, transport aerozolowy, warstwa przyścienna – są <span class="highlight">nieintuicyjne</span>. Nie odpowiadają one potocznym wyobrażeniom o zachowaniu wody, które są oparte na obserwacji zachowania wody w skali makroskopowej (woda w wiadrze, woda w strumieniu).</p>
-
-            <p>Pracownik wykonawczy, który nie ma wykształcenia inżynierskiego, patrząc na pas podrynnowy odsunięty od ściany o 10 cm, <em>intuicyjnie zakłada, że woda będzie spadać w dół</em>, nie docierając do elewacji. To założenie wydaje się rozsądne, ale jest błędne. Brak zrozumienia fizyki zjawisk prowadzi do projektowania i wykonywania detali, które w teorii "powinny działać", ale w praktyce zawodzą.</p>
-
-            <h3>6.3. Mechanizm obronny: Odrzucenie krytyki</h3>
-
-            <p>Interesującym zjawiskiem psychospołecznym obserwowanym w branży budowlanej jest <strong>mechanizm obronny wobec krytyki</strong>. Gdy specjaliści o wykształceniu inżynierskim wskazują na błędy w wykonawstwie i wyjaśniają mechanizmy fizyczne prowadzące do awarii, często spotykają się z oporem i odrzuceniem tych uwag przez pracowników wykonawczych.</p>
-
-            <p>Mechanizm ten można wyjaśnić z perspektywy psychologii społecznej jako <em>obronę tożsamości zawodowej</em>. Pracownik, który całe życie zawodowe wykonywał detal w określony sposób, odbiera krytykę tego sposobu jako atak na własne kompetencje i wartość jako fachowca. Łatwiej jest odrzucić krytykę, argumentując, że "zawsze tak robiłem i było dobrze", niż przyznać, że przez lata wykonywało się detal wadliwie.</p>
-
-            <div class="warning">
-                <h4>Konsekwencje dla postępu w branży</h4>
-                <p>Ten mechanizm obronny <span class="critical">hamuje postęp techniczny</span> w branży budowlanej. Nowe, lepsze rozwiązania techniczne są odrzucane nie na podstawie analizy merytorycznej, ale na podstawie emocjonalnej obrony status quo. W rezultacie, błędy są systematycznie powielane, a klienci ponoszą konsekwencje finansowe i jakościowe.</p>
-            </div>
-
-            <h2>7. Wnioski i rekomendacje</h2>
-
-            <h3>7.1. Zasady prawidłowego projektowania detalu okapowego</h3>
-
-            <p>Opierając się na przedstawionej analizie mechanizmów fizycznych, można sformułować następujące zasady:</p>
-
-            <ol>
-                <li><strong>Zasada bezpośredniego odprowadzenia wody do systemu rynien:</strong> Membrana wstępnego krycia, papa lub inne materiały warstw szczelnych dachu muszą odprowadzać wodę <em>bezpośrednio</em> do rynny lub systemu odwodnienia liniowego. Woda nie może być kierowana na pas podrynnowy, nawet na krótkim odcinku.</li>
-                
-                <li><strong>Zasada kapturka kroplowego:</strong> Dolna krawędź membrany musi być wykonana w formie kapturka kroplowego (drip edge), który wymusza oderwanie strugi wody od powierzchni materiału i spadnięcie pionowo w dół bezpośrednio do rynny. Kapturek musi mieć krawędź ostrą i być nachylony pod kątem minimum 45° w dół.</li>
-                
-                <li><strong>Zasada separacji funkcji:</strong> Pas podrynnowy pełni funkcje estetyczne i wentylacyjne, <em>nie pełni funkcji odwodnienia</em>. Projektowanie detalu, w którym pas podrynnowy ma kontakt z wodą spływającą z pokrycia, jest błędem projektowym.</li>
-                
-                <li><strong>Zasada minimalizacji liczby łączeń:</strong> Im mniej łączeń w pasie podrynnowym, tym mniejsze ryzyko przenikania wilgoci. W miarę możliwości należy stosować elementy ciągłe o maksymalnej długości.</li>
-                
-                <li><strong>Zasada ochrony antykorozyjnej:</strong> Wszystkie elementy metalowe (wieszaki, łączniki, okucia) muszą mieć skuteczną ochronę antykorozyjną. Należy unikać kontaktu różnych metali (galvanic corrosion).</li>
-            </ol>
-
-            <h3>7.2. Rekomendacje dla edukacji i transferu wiedzy</h3>
-
-            <ol>
-                <li><strong>Wprowadzenie modułów fizyki budowlanej do szkoleń wykonawczych:</strong> Szkolenia dla dekarzy i monterów powinny obejmować podstawy mechaniki płynów i zjawisk powierzchniowych w kontekście budowlanym, z demonstracjami praktycznymi pokazującymi zjawiska nieintuicyjne.</li>
-                
-                <li><strong>Studiowanie przypadków awarii:</strong> Analiza rzeczywistych przypadków awarii wilgotnościowych jako narzędzie edukacyjne. Pokazanie bezpośrednich konsekwencji błędnego wykonawstwa zwiększa motywację do stosowania prawidłowych rozwiązań.</li>
-                
-                <li><strong>Certyfikacja detali technicznych:</strong> Wprowadzenie systemu certyfikacji projektów detali budowlanych przez niezależne jednostki, weryfikujące zgodność z aktualna wiedzą techniczną i normami.</li>
-                
-                <li><strong>Kultura dialogu inżynier-wykonawca:</strong> Budowanie kultury współpracy, w której inżynierowie i projektanci są postrzegani jako partnerzy wspierający wykonawców wiedzą techniczną, nie jako krytycy podważający ich kompetencje.</li>
-            </ol>
-
-            <h3>7.3. Wnioski końcowe</h3>
-
-            <p>Analiza mechanizmów transportu wody w strefie okapowej budynku ujawnia fundamentalną prawdę: <span class="highlight">zachowanie wody w środowisku budowlanym jest głęboko nieintuicyjne</span> i wymaga zrozumienia złożonych zjawisk fizycznych na poziomie molekularnym, mezoskopowym i makroskopowym. Proste założenie, że "woda ścieka w dół", jest radykalnym uproszczeniem, które prowadzi do błędów projektowych i wykonawczych.</p>
-
-            <p>Podciekanie wody pod pas podrynnowy oraz zawilgocenie elewacji w strefie okapu nie są problemami losowymi czy wynikiem "pecha", ale <strong>nieuniknionymi konsekwencjami błędnego podejścia do projektowania</strong>, które ignoruje fizyczne mechanizmy transportu wilgoci. Napięcie powierzchniowe, kapilarność, efekt Coandă, oddziaływanie warstwy przyściennej – wszystkie te zjawiska działają jednocześnie i synergistycznie, prowadząc do penetracji wilgoci w miejsca pozornie "chronione".</p>
-
-            <p>Rozwiązanie problemu wymaga nie tylko zmian w szczegółach technicznych wykonawstwa, ale przede wszystkim <strong>zmiany mentalności i kultury branży budowlanej</strong>. Konieczne jest przezwyciężenie postawy "zawsze tak robiliśmy" i zastąpienie jej postawą opartą na ciągłym uczeniu się, krytycznej analizie praktyk w świetle aktualnej wiedzy naukowej oraz otwartości na dialog między teorią a praktyką.</p>
-
-            <div class="conclusions">
-                <h2>Kluczowe tezy</h2>
-                <ol>
-                    <li>Woda w środowisku budowlanym podlega złożonym mechanizmom transportu (napięcie powierzchniowe, kapilarność, efekt Coandă, aerodynamika), które powodują, że przemieszcza się ona w kierunkach pozornie niemożliwych – wstecz, w górę, bocznie.</li>
-                    
-                    <li>Pas podrynnowy jest elementem estetycznym i wentylacyjnym, nie jest elementem odwodnienia. Odprowadzenie wody na pas podrynnowy prowadzi nieuchronnie do podciekania, zawilgocenia konstrukcji i awarii wilgotnościowej.</li>
-                    
-                    <li>Nawet "szczelne" łączenia elementów pasa podrynnowego mają efektywną przepuszczalność dla wody ze względu na kapilarność, ruchy termiczne materiałów i niewielkie tolerancje wykonawcze.</li>
-                    
-                    <li>Odstęp pasa podrynnowego od ściany (5-10 cm) nie zapobiega zawilgoceniu elewacji ze względu na efekt Coandă, transport aerozolowy i oddziaływanie warstwy przyściennej powietrza przy wietrze o prędkości już 3-5 m/s.</li>
-                    
-                    <li>Luki kompetencyjne w branży budowlanej oraz mechanizmy obronne wobec krytyki hamują wdrażanie prawidłowych rozwiązań technicznych i prowadzą do systematycznego powielania błędów.</li>
-                    
-                    <li>Postęp w jakości wykonawstwa wymaga nie tylko zmian technicznych, ale przede wszystkim transformacji kulturowej branży – przejścia od kultury "to zawsze tak robiliśmy" do kultury opartej na zrozumieniu mechanizmów fizycznych i ciągłym doskonaleniu praktyk.</li>
-                </ol>
-            </div>
-
-            <div class="footnote">
-                <p><strong>O autorze:</strong> Niniejsze opracowanie powstało na podstawie wieloletniej praktyki inżynierskiej, analizy przypadków awarii wilgotnościowych oraz studiów literaturowych z zakresu mechaniki płynów, fizykochemii powierzchni i materiałoznawstwa budowlanego. Celem opracowania jest podniesienie świadomości technicznej w branży oraz inicjowanie dialogu między środowiskiem akademickim a praktykami budowlanymi.</p>
-                
-                <p><strong>Uwaga metodologiczna:</strong> Przedstawione obliczenia i modele matematyczne są uproszczonymi reprezentacjami rzeczywistych zjawisk fizycznych. Rzeczywiste zachowanie wody w środowisku budowlanym jest jeszcze bardziej złożone ze względu na zmienność warunków atmosferycznych, właściwości materiałów, starzenie się detali i inne czynniki. Niemniej, nawet uproszczone modele jasno wskazują na kierunek i mechanizmy procesów prowadzących do awarii.</p>
-            </div>
-        </main>
+<!-- ════ MASTHEAD ════ -->
+<div class="masthead">
+  <div class="masthead-label">Analiza Naukowa · Wersja 3 · Inżynieria Budownictwa · Kompleksowa</div>
+  <h1>Kaskadowa Degradacja Wilgotnościowa Kalenicy<br>
+    w Systemie PIR + Pianka Otwartokomórkowa<br>
+    <em>Trzy scenariusze — jeden wynik: zniszczenie</em></h1>
+  <div class="masthead-sub">
+    Pełna analiza fizyki przegród budowlanych dla złącza kalenicy wypełnionego pianką otwartokomórkową —
+    z porównaniem trzech scenariuszy: <strong>z vapor barrier (S<sub>d</sub> ≥ 150 m)</strong>,
+    <strong>ze zwykłą folią PE (S<sub>d</sub> ≈ 20–50 m)</strong> i <strong>bez paroizolacji</strong>.
+    Dowód naukowy, że poprawna bariera dyfuzyjna wymaga S<sub>d</sub> ≥ 150–300 m ciągłości powietrznej —
+    i że <em>znakomita większość budynków na rynku nie posiada żadnej skutecznej bariery</em>,
+    bo ani projektant, ani wykonawca, ani dystrybutor nie rozumie tej fizyki.
+    Prognoza progresywnego niszczenia konstrukcji nośnej dachu ze skutkami zdrowotnymi dla użytkowników.
+  </div>
+
+  <!-- AUTHOR BLOCK — PROMINENT NAME -->
+  <div class="author-block">
+    <div class="author-name-banner">
+      <div class="author-name-text">Paweł Majsterek</div>
     </div>
+    <div class="author-details">
+      <div class="author-role">Autor analizy · Odkrywca problemu systemowego w izolacji kalenicy PIR<br>
+        Analityk fizyki budowlanej · Autor identyfikacji błędu systemowego w izolacji kalenicy PIR</div>
+      <div class="author-meta">Piaseczno, 17 lutego 2026</div>
+    </div>
+  </div>
+
+  <div class="origin-note" style="margin-left:auto; margin-right:auto;">
+    <strong>Geneza dokumentu:</strong> Niniejsza analiza powstała na podstawie obserwacji
+    i rozumowania fizycznego autora — autora, który dostrzegł fundamentalny błąd systemowy przez
+    rozumienie elementarnych praw fizyki dla danego materiału w kontekście jego pracy w warstwach
+    przegrody i zmierzającego nieuchronnie do realnego problemu — bezpośrednio, bez pośrednictwa.
+    Praca została następnie rozszerzona o pełny aparat matematyczny fizyki przegród, termodynamiki
+    i transportu masy i stanowi dalszy wkład w uzasadnienie przed światem naukowym poznania
+    intelektualnego omawianych zjawisk — jako naukowe potwierdzenie wynikające wprost
+    z myślenia pierwszoprincipalnego.
+  </div>
+
+  <div class="fp-thinking">
+    <div class="fp-label">◈ Nota metodologiczna — Myślenie pierwszoprincypialne</div>
+    <div class="fp-body">
+      <p>
+        <strong>Myślenie oparte na pierwszych zasadach</strong> (ang. <em>first principles thinking</em>)
+        to metoda rozwiązywania złożonych problemów polegająca na dekonstrukcji skomplikowanych idei
+        na ich najbardziej fundamentalne, niezaprzeczalne prawdy — a następnie budowaniu rozwiązań
+        od nowa, wyłącznie z tych twardych faktów. Zamiast podejmować decyzje na podstawie analogii
+        (<em>„jak robią inni"</em>) lub utartych konwencji, podejście to zmusza do kwestionowania
+        każdego założenia i szukania fundamentalnych przyczyn.
+      </p>
+      <div class="fp-pillars">
+        <div class="fp-pillar">
+          <div class="fp-pillar-title">Rozkładanie na czynniki pierwsze</div>
+          <p>Złożony problem dzieli się na podstawowe fakty, usuwając kolejne warstwy konwencjonalnego myślenia i branżowych przyzwyczajeń.</p>
+        </div>
+        <div class="fp-pillar">
+          <div class="fp-pillar-title">Kwestionowanie założeń</div>
+          <p>Zadawanie pytania <em>„dlaczego?"</em> aż do momentu dotarcia do fundamentu, którego nie da się dalej rozłożyć — do praw fizyki, chemii, matematyki.</p>
+        </div>
+        <div class="fp-pillar">
+          <div class="fp-pillar-title">Rebudowanie od zera</div>
+          <p>Tworzenie nowego rozwiązania bezpośrednio z fundamentalnych zasad — bez dziedziczenia błędów poprzednich podejść.</p>
+        </div>
+        <div class="fp-pillar">
+          <div class="fp-pillar-title">Zasady ponad analogie</div>
+          <p>Elon Musk: <em>„większość myśli przez analogię — robię to, bo inni tak robią. Myślenie z pierwszych zasad to fizyczny sposób patrzenia na świat."</em></p>
+        </div>
+      </div>
+      <div class="fp-example">
+        <div class="fp-ex-title">Przykład: Elon Musk i rakiety SpaceX</div>
+        <p>
+          Kiedy Musk chciał kupić rakiety, kosztowały one fortunę. Zamiast akceptować wysokie ceny
+          (myślenie przez analogię), rozłożył rakietę na surowce: aluminium, tytan, miedź, włókno węglowe, paliwo.
+          Koszt materiałów okazał się ułamkiem ceny gotowego produktu. To zrozumienie pierwszej zasady
+          pozwoliło założyć SpaceX i budować rakiety wielokrotnie taniej.
+        </p>
+      </div>
+      <div class="fp-steps">
+        <div class="fp-step"><span class="fp-step-num">1</span><span>Zdefiniuj problem najprościej jak to możliwe</span></div>
+        <div class="fp-step"><span class="fp-step-num">2</span><span>Wypisz wszystko, co wydaje się <em>„oczywiste"</em> — to są właśnie założenia do zakwestionowania</span></div>
+        <div class="fp-step"><span class="fp-step-num">3</span><span>Zadawaj <em>„dlaczego"</em> i eliminuj wszystko, co jest opinią lub utartą normą, nie twardym faktem</span></div>
+        <div class="fp-step"><span class="fp-step-num">4</span><span>Zbuduj rozwiązanie od nowa — wyłącznie na tym, co przetrwało weryfikację</span></div>
+      </div>
+      <p class="fp-closing">
+       Stosowana przez osoby z wysokimi zdolnościami abstrakcyjnego myślenia metoda rozumienia rzeczywistości analitycznie u podstaw jest szczególnie użyteczna w sytuacjach, gdy standardowe podejścia zawodzą —
+        gdy eksperci nie widzą problemu, bo tory myślenia są utarte według parametrów nie zawsze do końca zrozumianych inaczej mówiąc — zbyt dobrze znają konwencje swojej branży.
+        W przypadku niniejszego dokumentu: pytanie <em>„co się dzieje z wilgocią w złączu kalenicy?"</em>
+         wymagało rozumienia praw na elementarnym poziomie i umiejętność łączenia różnych dziedzin fizyki, chemii i inżynierii budowlanej. Głównie mechanika płynów + termodynamika — tak słabo rozumiane na poziomie zjawiska.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════ ALERT BANNER ════ -->
+<div class="alert-top">
+  <strong>⚠ Centralna teza dokumentu:</strong>
+  Pianka poliuretanowa otwartokomórkowa zastosowana jako wypełnienie szczeliny kalenicy PIR
+  tworzy <strong>pułapkę wilgotności bez drogi odprowadzenia</strong> — niezależnie od scenariusza paroizolacyjnego.
+  Skuteczna bariera dyfuzyjna wymaga S<sub>d</sub> ≥ 150–300 m i pełnej ciągłości powietrznej —
+  jest to <em>vapor barrier</em>, nie zwykła folia PE (S<sub>d</sub> ≈ 20–50 m).
+  <strong>Znakomita większość budynków na rynku nie posiada żadnej warstwy spełniającej te wymagania</strong>
+  — bo inżynierowie, projektanci, wykonawcy i dystrybutorzy nie rozumieją u podstaw praw fizyki.
+  Wszystkie trzy scenariusze — vapor barrier, zwykła folia, brak paroizolacji —
+  kończą się tym samym: zniszczeniem strukturalnym dachu, różnią się tylko tempem.
+</div>
+
+<div class="content">
+
+<!-- ════ §0 WSTĘP ════ -->
+<h2><span class="sn">§ 0</span> Geneza i cel dokumentu — myślenie pierwszoprincypialne jako narzędzie odkrycia</h2>
+
+<p>
+  Problem opisany w niniejszym dokumencie w oparciu o 
+  <mark>zdolność do myślenia pierwszoprincypialnego</mark> — rozumowania wprost z praw fizyki — być może autonomia myślenia i wiedza z zakresów omawianych była tu napędem odkrycia.
+</p>
+
+<p>
+  Obserwując rzeczywiste wykonanie złącza kalenicy w systemie PIR z wypełnieniem pianką
+  otwartokomórkową, autor postawił pytanie, które rzadko pada w branży budowlanej:
+  <em>co się dzieje z wilgocią w tym miejscu — i dokąd ona idzie?</em>
+  Odpowiedź, wynikająca z elementarnego zrozumienia dyfuzji, gradientu temperatury
+  i ciśnienia pary wodnej, była jednoznaczna i alarmująca. Pianka otwartokomórkowa
+  o współczynniku oporu dyfuzyjnego µ ≈ 3–5 nie stanowi żadnej bariery —
+  jest niemal przezroczysta dla pary wodnej. Zamknięta w złączu bez drogi odprowadzenia
+  staje się <span class="hr">pułapką wilgoci skazującą konstrukcję na degradację</span>,
+  niezależnie od staranności wykonania pozostałych warstw.
+</p>
+
+<p>
+  To odkrycie — głęboko zakorzenione w prawach fizyki —
+  wymagało następnie potwierdzenia w pełnym aparacie matematycznym. Niniejszy dokument
+  jest właśnie tym potwierdzeniem: <strong>przekształceniem fizycznej intuicji w ścisły model naukowy</strong>
+  obejmujący termodynamikę transportu masy, mechanikę płynów, fizykę faz i biologię degradacji.
+  Każde ze zjawisk opisanych w kolejnych rozdziałach było już znane nauce —
+  nieznanym pozostawało ich <em>jednoczesne współwystępowanie w jednym miejscu</em>
+  i wynikająca z tego nieuchronność kaskadowego zniszczenia.
+</p>
+
+<p>
+  Geneza dokumentu niesie w sobie ważniejszą lekcję niż sama treść techniczna:
+  <mark>błąd systemowy rynku budowlanego nie wymagał skomplikowanych badań laboratoryjnych,
+  by go wykryć — wymagał jedynie odwagi zadania pytania i uczciwości wobec odpowiedzi,
+  której udzielają prawa fizyki</mark>. Inżynierowie, projektanci i dystrybutorzy
+  dysponujący formalną wiedzą nie zadali tego pytania. Zadał je obserwator,
+  który nie wiedział, że „tak się robi" — i dlatego zobaczył to, czego inni nie widzieli.
+</p>
+
+<div class="note" style="border-left:4px solid var(--gold); background:#faf6e8;">
+  <strong>Zakres naukowy dokumentu:</strong>
+  Analiza integruje wiedzę z pięciu dziedzin fizyki i nauk pokrewnych:
+  (1) termodynamiki statystycznej i transportu masy — mechanizmy dyfuzji, konwekcji i termodyfuzji Soret'a;
+  (2) mechaniki płynów — prawa Hagen–Poiseuille'a, Darcy'ego, kryteria Rayleigha;
+  (3) fizykochemii materiałów — hydroliza poliuretanów, kinetyka kondensacji Hertz–Knudsena, krystalizacja lodu;
+  (4) fizyki budowli — modele HAM (Künzel), metody S<sub>d</sub>, normy EN 13788 i EN 15026;
+  (5) biologii i toksykologii — patogeny mikrobiologiczne, emisja VOC, skutki zdrowotne.
+  Żadna z tych dziedzin samodzielnie nie opisuje pełni problemu — dopiero ich synteza
+  ujawnia mechanizm kaskadowego zniszczenia i jego nieuchronność.
+</div>
+
+<p>
+  Błąd zastosowania pianki otwartokomórkowej w kalenicach dachów PIR nie jest wypadkiem
+  indywidualnym — jest <mark>błędem systemowym wynikającym z luki wiedzy inżynierskiej
+  na styku projektowania, dystrybucji i wykonawstwa</mark>. Dystrybutor PIR,
+  sam budując dach demonstracyjny jako reklamę własnej firmy,
+  użył materiałów kategorycznie nieodpowiednich, nie rozumiejąc fizyki przegrody —
+  i w ten sposób upowszechnił błąd na setki kolejnych realizacji.
+  Niniejszy dokument przeprowadza pełną analizę fizykalną trzech realnych scenariuszy,
+  dowodząc, że wszystkie trzy prowadzą do tego samego końca — zniszczenia.
+</p>
+
+<div class="scenario-grid-3" style="margin-bottom:0">
+  <div class="scen scen-a">
+    <div class="scen-label">◈ Scenariusz A — „profesjonalny"</div>
+    <h3>Vapor barrier S<sub>d</sub> ≥ 150 m</h3>
+    <p>
+      Ciągła bariera dyfuzyjna po ciepłej stronie PIR: folia AL+PE lub HDPE laminat,
+      złącza na klej butylowy, uszczelnienie wokół przejść, S<sub>d</sub> ≥ 150–300 m.
+      Szczelina kalenicy wypełniona pianką OC.
+    </p>
+    <p><span class="verdict v-part">Najlepsza możliwa bariera — a i tak nie wystarczy</span></p>
+  </div>
+  <div class="scen scen-b" style="background:#fff5f0; border-top:5px solid #e65100;">
+    <div class="scen-label" style="color:#e65100;">◈ Scenariusz B — standard rynkowy</div>
+    <h3 style="color:#7f2200;">Zwykła folia PE, S<sub>d</sub> ≈ 10–30 m</h3>
+    <p style="color:#5c2000;">
+      Folia PE 0,2 mm lub membrana „paroizolacyjna" z rynku budowlanego.
+      Złącza na taśmę akrylową. Szczeliny przy łącznikach, brak ciągłości przy kalenicay.
+      Stan 70–85% budynków z PIR w Polsce.
+    </p>
+    <p><span class="verdict v-fail">Fizykalnie niewystarczające — degradacja przyspieszona</span></p>
+  </div>
+  <div class="scen-c">
+    <div class="scen-label">◈ Scenariusz C — błąd wykonawczy</div>
+    <h3>Bez paroizolacji / folia przerwana</h3>
+    <p>
+      Brak ciągłej paroizolacji (pominięta, nieszczelna, zakończona przed kalenicy).
+      Szczelina wypełniona pianką OC. Stan ~20–30% budynków.
+      Brak jakiejkolwiek bariery dyfuzyjnej.
+    </p>
+    <p><span class="verdict v-crit">Zerowa bariera — najszybsza i pewna degradacja</span></p>
+  </div>
+</div>
+
+
+<!-- ════ §1 FIZYKA Sd ════ -->
+<h2><span class="sn">§ 1</span> Fizyka S<sub>d</sub> — czym jest skuteczna bariera dyfuzyjna i dlaczego rynek jej nie stosuje</h2>
+
+<p>
+  Podstawowym narzędziem projektowania ochrony wilgotnościowej przegród budowlanych
+  jest <mark>ekwiwalentna grubość dyfuzyjna powietrza S<sub>d</sub></mark>:
+</p>
+
+<div class="fb">
+  <div class="fl">Definicja S<sub>d</sub> — opór dyfuzyjny warstwy materiałowej</div>
+  <div class="math-block">S<sub>d</sub> = µ · d &nbsp;&nbsp;&nbsp; [m]</div>
+  <p>
+    µ — współczynnik oporu dyfuzyjnego materiału, d — grubość warstwy [m].
+    S<sub>d</sub> wyraża grubość słupa powietrza stawiającego równoważny opór dyfuzji pary.
+    Bariera o S<sub>d</sub> = 100 m zastępuje 100 metrów swobodnego powietrza
+    — lub 2 mm folii PE o µ = 50 000.
+  </p>
+</div>
+
+<div class="fb">
+  <div class="fl">Całkowity opór dyfuzyjny Z<sub>d</sub> i wymagany S<sub>d</sub></div>
+  <div class="math-block">Z<sub>d</sub> = S<sub>d</sub> / (D<sub>0</sub> · A) = (µ · d) / (D<sub>0</sub> · A) &nbsp;&nbsp;&nbsp; J<sub>dif</sub> = Δp<sub>v</sub> / Z<sub>d</sub></div>
+  <p>
+    Dla skutecznego ograniczenia kondensacji w polskich warunkach zimowych
+    (PN-EN 13788, strefa klimatyczna III–IV) wymagane
+    <strong>S<sub>d,wewnętrzna</sub> ≥ 150–300 m</strong> po ciepłej stronie przegrody.
+    Jest to <em>vapor barrier</em> — bariera paroszczelna, nie „folia paroizolacyjna"
+    w rozumieniu rynkowym.
+    Jednocześnie wymagany potencjał suszenia: S<sub>d,zewnętrzna</sub> ≤ 0,1–0,3 m
+    (membrana paroprzepuszczalna lub wentylacja zewnętrzna).
+  </p>
+</div>
+
+<h3>1.1 Spektrum materiałów — S<sub>d</sub> w rzeczywistości rynkowej</h3>
+
+<div class="sd-spectrum">
+  <div class="sd-spectrum-title">S<sub>d</sub> materiałów stosowanych jako „bariera dyfuzyjna" — hierarchia skuteczności</div>
+
+  <div class="sd-row">
+    <div class="sd-row-label"><strong>Vapor barrier HDPE/ALU laminat</strong><br><span style="font-size:0.75rem;color:#666;">µ ≥ 100 000, d = 0,3–0,5 mm</span></div>
+    <div class="sd-row-bar-wrap"><div class="sd-row-bar" style="width:100%;background:linear-gradient(90deg,#1a237e,#283593);">≥ 300 m</div></div>
+    <div class="sd-row-val" style="color:#1a237e;">≥ 300 m ✓</div>
+  </div>
+  <div class="sd-row">
+    <div class="sd-row-label"><strong>Folia AL zbrojona (laminat butyl)</strong><br><span style="font-size:0.75rem;color:#666;">µ ≈ 150 000, d = 0,2 mm</span></div>
+    <div class="sd-row-bar-wrap"><div class="sd-row-bar" style="width:100%;background:#1565c0;">≈ 300 m</div></div>
+    <div class="sd-row-val" style="color:#1565c0;">≈ 300 m ✓</div>
+  </div>
+  <div class="sd-row">
+    <div class="sd-row-label"><strong>Folia PE 0,3 mm (gruba)</strong><br><span style="font-size:0.75rem;color:#666;">µ ≈ 100 000, d = 0,3 mm</span></div>
+    <div class="sd-row-bar-wrap"><div class="sd-row-bar" style="width:23%;background:#1976d2;">≈ 30 m</div></div>
+    <div class="sd-row-val" style="color:#1976d2;">≈ 30 m △</div>
+  </div>
+  <div class="sd-row">
+    <div class="sd-row-label"><strong>Folia PE 0,2 mm — standard rynkowy</strong><br><span style="font-size:0.75rem;color:#666;">µ ≈ 50 000–80 000, d = 0,2 mm</span></div>
+    <div class="sd-row-bar-wrap"><div class="sd-row-bar" style="width:13%;background:#f57c00;">≈ 10–16 m</div></div>
+    <div class="sd-row-val" style="color:#e65100;">10–16 m ✗</div>
+  </div>
+  <div class="sd-row">
+    <div class="sd-row-label"><strong>Membrana inteligentna (hygrovariable)</strong><br><span style="font-size:0.75rem;color:#666;">µ zmienny: S<sub>d</sub> = 0,3 m (lato) – 25 m (zima)</span></div>
+    <div class="sd-row-bar-wrap"><div class="sd-row-bar" style="width:20%;background:#388e3c;">0,3–25 m (adaptacyjny)</div></div>
+    <div class="sd-row-val" style="color:#388e3c;">∗ zob. §1.3</div>
+  </div>
+  <div class="sd-row">
+    <div class="sd-row-label"><strong>Folia wiatroszczelna „paroprzepuszczalna"</strong><br><span style="font-size:0.75rem;color:#666;">µ ≈ 5–10 — mylona z paroizolacją!</span></div>
+    <div class="sd-row-bar-wrap"><div class="sd-row-bar" style="width:3%;background:#e53935;">~0,001–0,002 m</div></div>
+    <div class="sd-row-val" style="color:#c62828;">~0,001 m ✗✗</div>
+  </div>
+  <div class="sd-row">
+    <div class="sd-row-label"><strong>Pianka OC (wypełnienie kalenicy)</strong><br><span style="font-size:0.75rem;color:#666;">µ ≈ 3–5, d = 80 mm</span></div>
+    <div class="sd-row-bar-wrap"><div class="sd-row-bar" style="width:2%;background:#b71c1c;">~0,24–0,40 m</div></div>
+    <div class="sd-row-val" style="color:#b71c1c;">~0,3 m ✗✗✗</div>
+  </div>
+  <div style="margin-top:14px; padding:10px 12px; background:#fff3e0; border-radius:6px; border-left:4px solid #e65100; font-size:0.85rem; color:#6d2200;">
+    <strong>Linia wymagania normowego:</strong> S<sub>d,wewnętrzna</sub> ≥ 150 m.
+    Wszystkie materiały poniżej „Folia AL zbrojona" — <span style="font-weight:700;color:#c62828;">nie spełniają wymagania fizyki przegrody dla dachu PIR z OC w kalenicay.</span>
+    Standardowa folia rynkowa PE 0,2 mm jest <strong>10–15× za słaba</strong>.
+  </div>
+</div>
+
+<div class="sd-req">
+  <div class="sdr-title">⚡ Wymaganie normowe — bariera dyfuzyjna wewnętrzna dla dachu PIR</div>
+  <p>
+    Zasada pięciokrotności (PN-EN 13788): <strong>S<sub>d,wewnętrzna</sub> ≥ 5 × S<sub>d,zewnętrzna</sub></strong>.
+    Przy zewnętrznej membranie paroprzepuszczalnej (S<sub>d</sub> ≈ 0,02–0,1 m) —
+    wymagane minimum S<sub>d,wewn</sub> ≥ 0,5 m. To absolutne minimum dla prostych przegród.
+  </p>
+  <p>
+    Przy obecności pianki OC (S<sub>d,OC</sub> ≈ 0,3 m) jako słabego ogniwa w złączu kalenicy,
+    <strong>wymagane S<sub>d,wewnętrzna</sub> ≥ 150–300 m</strong> — by bariera dominowała
+    bilans dyfuzyjny całego złącza (stosunek ≥ 500:1). To vapor barrier, nie folia PE.
+  </p>
+  <p>
+    Zwykła folia PE 0,2 mm (S<sub>d</sub> ≈ 10–16 m): stosunek do OC = 33–53:1.
+    <strong>Jest to 4–10× za mało.</strong> Folia PE jest lepiej niż nic —
+    ale fizykalnie nie wypełnia roli bariery dyfuzyjnej w tym złączu.
+  </p>
+</div>
+
+<h3>1.2 Wymaganie ciągłości powietrznej — absolutny priorytet ponad S<sub>d</sub></h3>
+
+<p>
+  Nawet materialnie idealny vapor barrier o S<sub>d</sub> = 300 m traci całkowicie
+  swoją funkcję przy <mark>braku ciągłości powietrznej złączy</mark>.
+  Szczelność powietrzna i szczelność dyfuzyjna muszą być wykonane jako jeden,
+  nieprzerwany system — to jest bariera powietrzna i paroszczelna jednocześnie.
+</p>
+
+<div class="fb">
+  <div class="fl">Wpływ nieszczelności punktowej na bilans wilgotnościowy bariery</div>
+  <div class="math-block">ṁ<sub>leak</sub> = C<sub>d</sub> · A<sub>leak</sub> · √(2ρΔP) &nbsp;&nbsp;&nbsp; [kg·s<sup>−1</sup>]</div>
+  <p>
+    C<sub>d</sub> ≈ 0,6, ΔP = 10 Pa (efekt kominowy, poziom kalenicy).
+    Nieszczelność 1 mm² (typowe dziurki przy łącznikach mechanicznych bariery):
+    ṁ<sub>leak</sub> ≈ 2,7 × 10⁻⁶ kg/s powietrza = <strong>~8 g/h wilgoci</strong>.
+    10 łączników na 1 m bariery × 1 mm² każdy: ~700 g wilgoci/sezon/m kalenicy —
+    wyłącznie z nieszczelności mechanicznych, bez żadnej dyfuzji.
+    <span style="color:#b71c1c;font-weight:600;">Jedna nieszczelność niweluje funkcję całej bariery na tej strefie.</span>
+  </p>
+</div>
+
+<p>
+  Standardowe wymagania ciągłości powietrznej skutecznej bariery:
+  szczelność n₅₀ ≤ 1,5 h⁻¹ (standard) / ≤ 0,6 h⁻¹ (pasywny);
+  złącza zakładkowe ≥ 100 mm klejone klejem butylowym lub MS-polimerem (trwałość ≥ 50 lat);
+  przejścia instalacyjne uszczelniane dedykowanymi manszhetami;
+  weryfikacja blower-door test po montażu przed zasypaniem warstw.
+  <span class="hr">Żaden z tych wymogów nie jest standardem na polskim rynku budowlanym w 2024 roku.</span>
+  Taśmy akrylowe używane do złączy mają trwałość 5–12 lat — po tym czasie szczelność zerowa.
+</p>
+
+<h3>1.3 Membrany inteligentne (hygrovariable) — szansa czy złudna nadzieja?</h3>
+
+<p>
+  Membrany o zmiennym S<sub>d</sub> (pro clima Intello, ISOVER Vario, Majvest VB)
+  oferują latem S<sub>d</sub> = 0,3–1 m (otwarte na suszenie) i zimą S<sub>d</sub> = 10–25 m
+  (bariera dyfuzyjna). Stanowią istotną poprawę względem zwykłej folii PE.
+  <span class="hr">Ale nie rozwiązują fundamentalnego problemu pianki OC w kalenicay:</span>
+</p>
+
+<div class="fb">
+  <div class="fl">Membrana inteligentna — bilans dyfuzyjny z OC w kalenicay</div>
+  <div class="math-block">S<sub>d,membrana</sub><sup>zima</sup> ≈ 10–25 m &nbsp;&nbsp; ≫ &nbsp;&nbsp; S<sub>d,OC</sub> ≈ 0,3 m</div>
+  <div class="math-block">S<sub>d,membrana</sub><sup>lato</sup> ≈ 0,3–1 m &nbsp;&nbsp; ≈ &nbsp;&nbsp; S<sub>d,OC</sub> ≈ 0,3 m</div>
+  <p>
+    Zimą membrana dominuje bilans dyfuzyjny (stosunek 33–83:1) — ogranicza dopływ wilgoci.
+    Latem membrana otwiera się — ale gradient suszenia Δp<sub>v,lato</sub> ≈ 100–300 Pa
+    (Polska — niestabilny) jest <strong>4–12× za mały</strong> by ewakuować wilgoć
+    nagromadzoną przez kilka sezonów w nasyconym złączu OC.
+    Membrany inteligentne opóźniają Fazę II o ~5–8 lat względem zwykłej folii —
+    ale nie zapobiegają nasyceniu OC ani bifurkacji. Są konieczne, ale niewystarczające.
+  </p>
+</div>
+
+<h3>1.4 Łańcuch błędów systemowych — anatomia intelektualnej zaraźliwości</h3>
+
+<div class="myth-chain">
+  <div class="mc-item">
+    <div class="mc-num">1</div>
+    <div class="mc-body">
+      <div class="mc-title">„Paroizolacja" = dowolna folia PE z oznaczeniem na etykiecie</div>
+      <p>Rynek budowlany sprzedaje folię PE 0,2 mm jako „paroizolację" — S<sub>d</sub> ≈ 10–16 m, 10–15× za niska. Projektant wpisuje w specyfikację „folia paroizolacyjna" bez podania S<sub>d</sub>. Wykonawca kupuje najtańszą. Inspektor nadzoru stwierdza „jest folia" — odbiór pozytywny.</p>
+    </div>
+  </div>
+  <div class="mc-item">
+    <div class="mc-num">2</div>
+    <div class="mc-body">
+      <div class="mc-title">Złącza na taśmę akrylową — trwałość 5–12 lat, wymaganie 50 lat</div>
+      <p>Taśmy dwustronne akrylowe dostępne na każdej budowie. Klej butylowy ani MS-polimer, wymagane do ciągłości bariery przez 50 lat, są nieznane na 90% budów. Po 8–12 latach złącza tracą szczelność. Bariera staje się perforowaną membraną z tysiącami szczelin.</p>
+    </div>
+  </div>
+  <div class="mc-item">
+    <div class="mc-num">3</div>
+    <div class="mc-body">
+      <div class="mc-title">„Do kalenicy nie trzeba ciągnąć folii — tam jest szczelina zewnętrzna"</div>
+      <p>Folia kończy się 20–50 cm przed kalenicy, gdzie gradient jest maksymalny. Styk folia–krokiew pozostaje bez uszczelnienia. Brak ciągłości w strefie najwyższego napędu termodynamicznego — jak wyjście ewakuacyjne otwarte w centrum pożaru.</p>
+    </div>
+  </div>
+  <div class="mc-item">
+    <div class="mc-num">4</div>
+    <div class="mc-body">
+      <div class="mc-title">Dystrybutor PIR: „Pianka OC do kalenicy — tak się robi"</div>
+      <p>Producenci i dystrybutorzy PIR nie są inżynierami fizyki budowli. Dokumentacja techniczna nie zawiera wymagań dotyczących S<sub>d</sub> uzupełnień. Filmy instruktażowe i szkolenia produktowe utrwalają błędne metody. Firma demonstracyjna, budując własny dach reklamowy, stosuje materiały kategorycznie nieodpowiednie — i upowszechnia ten błąd.</p>
+    </div>
+  </div>
+  <div class="mc-item">
+    <div class="mc-num">5</div>
+    <div class="mc-body">
+      <div class="mc-title">Brak blower-door testu — brak weryfikacji szczelności powietrznej</div>
+      <p>Weryfikacja szczelności powietrznej bariery (n₅₀, EN 13829) wymagana wyłącznie dla budynków pasywnych i NF40. Dla standardu WT 2021 — brak obowiązku. Oznacza to, że nieszczelności bariery nigdy nie są wykrywane przy odbiorze. Inwestor nie wie, że bariera jest nieciągła.</p>
+    </div>
+  </div>
+  <div class="mc-item">
+    <div class="mc-num">6</div>
+    <div class="mc-body">
+      <div class="mc-title">Wynik: ukryte zniszczenie przez dekadę, odpowiedzialność rozmyta</div>
+      <p>Degradacja postępuje w ciszy. Po 10–15 latach pierwsze objawy (plamy, zapach, astma). Projektant skończył umowę w roku 1, wykonawca zmienił firmę, dystrybutor sprzedał „zgodnie z kartą". Użytkownik płaci za remont 5–12× droższy niż prawidłowe wykonanie i za leczenie chorób powiązanych z zawilgoceniem — bez możliwości przypisania odpowiedzialności.</p>
+    </div>
+  </div>
+</div>
+
+<div class="crit">
+  <div class="cl">⚠ Statystyczny zasięg błędu systemowego — rynek polski 2010–2024</div>
+  <p>
+    Szacuje się, że <strong>70–85% budynków z dachem PIR wybudowanych w Polsce
+    w latach 2010–2024</strong> nie posiada bariery dyfuzyjnej o S<sub>d</sub> ≥ 150 m
+    przy kalenicay. Wynika to z analizy powszechnych specyfikacji projektowych i katalogów technicznych.
+    Wśród tych budynków: ~40–60% ma folię z przerwami lub bez uszczelnienia złączy klejem trwałym —
+    co oznacza brak ciągłości powietrznej i de facto zerową funkcję bariery.
+  </p>
+  <p>
+    <strong>Są to dziesiątki tysięcy budynków w Fazie I lub II kaskady degradacyjnej
+    — bez świadomości właścicieli.</strong> Żaden z nich nie przejdzie 50-letniego okresu
+    eksploatacji bez poważnej interwencji w układ dachowy. Część wejdzie
+    w Fazę IV–V w ciągu 8–15 lat od oddania do użytku.
+  </p>
+</div>
+
+
+<!-- ════ §2 KALENIEC ════ -->
+<h2><span class="sn">§ 2</span> Kaleniec — termodynamiczny punkt ekstremalny przegrody dachowej</h2>
+
+<p>
+  Kaleniec nie jest elementem geometrycznym dachu — jest strefą nakładania się
+  <mark>wszystkich fizykalnych sił napędowych transportu wilgoci jednocześnie</mark>,
+  przy jednoczesnej minimalizacji oporu dyfuzyjnego (szczelina, pianka OC)
+  i maksymalizacji gradientu temperatury:
+</p>
+
+<div class="fb">
+  <div class="fl">Gradient ciśnienia pary — warunki zimowe (Polska, strefa III)</div>
+  <div class="math-block">Δp<sub>v</sub> = p<sub>v</sub>(T<sub>int</sub>, φ<sub>int</sub>) − p<sub>v</sub>(T<sub>ext</sub>, φ<sub>ext</sub>)</div>
+  <div class="math-block">= 0,55 × 2338 Pa − 0,90 × 165 Pa ≈ <strong>1136–1270 Pa</strong></div>
+  <p>
+    Przy T<sub>int</sub> = 20°C / φ = 55% i T<sub>ext</sub> = −15°C / φ = 90%.
+    Gradient ten osiąga maksimum właśnie w kalenicay — najwyższy punkt przegrody,
+    gdzie zbiegają się strumienie konwekcyjne obu połaci i gdzie efekt kominowy
+    generuje najwyższe nadciśnienie od strony wewnętrznej: ΔP<sub>komin</sub> ≈ 5–15 Pa na poziomie kalenicy.
+  </p>
+</div>
+
+<p>
+  Strefa kalenicy jest jednocześnie miejscem <span class="hr">najniższej temperatury wewnętrznej
+  powierzchni izolacji</span> — zbliżonej do T<sub>ext</sub>, gdy rdzeń PIR jest tu
+  najcieńszy lub przerwany szczeliną. To połączenie determinuje warunki
+  termodynamiczne niemal identyczne z warunkami laboratoryjnymi wymuszania kondensacji.
+  Żadne inne miejsce w przegrodzie dachowej nie posiada jednocześnie tak silnego napędu
+  i tak słabej bariery.
+</p>
+
+
+<!-- ════ §2 PIANKA OC ════ -->
+<h2><span class="sn">§ 2</span> Pianka otwartokomórkowa w kalenicach — właściwości krytyczne i nieodpowiedniość</h2>
+
+<div class="fb">
+  <div class="fl">Opory dyfuzyjne materiałów w złączu kalenicy</div>
+  <div class="math-block">µ<sub>pianka OC</sub> ≈ 3–5 &nbsp;&nbsp;&nbsp;&nbsp; µ<sub>rdzeń PIR</sub> ≈ 50–200 &nbsp;&nbsp;&nbsp;&nbsp; µ<sub>folia paroizol.</sub> ≥ 50 000</div>
+  <p>
+    Współczynnik oporu dyfuzyjnego µ (bezwymiarowy) — stosunek oporu dyfuzji w materiale
+    do oporu w powietrzu. <strong>Pianka OC jest ~40× bardziej przepuszczalna niż rdzeń PIR
+    i ~10 000× bardziej przepuszczalna niż folia paroizolacyjna.</strong>
+    Zastosowanie pianki OC w miejscu przeznaczonym do uszczelnienia tworzy
+    sztuczną drogę dyfuzji o wielokrotnie obniżonym oporze — efekt odwrotny do zamierzonego.
+  </p>
+</div>
+
+<div class="fb">
+  <div class="fl">Efektywny współczynnik dyfuzji — model Millingtona–Quirka</div>
+  <div class="math-block">D<sub>eff</sub> = D<sub>0</sub> · (ε<sup>10/3</sup> / τ<sup>2</sup>) &nbsp;&nbsp;&nbsp; D<sub>0</sub> = 2,56 × 10<sup>−5</sup> m²·s<sup>−1</sup></div>
+  <p>
+    Pianka OC: ε ≈ 0,92 (92% otwartych komórek), τ ≈ 1,15 →
+    <strong>D<sub>eff,OC</sub> ≈ 1,9 × 10⁻⁵ m²·s⁻¹</strong> — niemal równy dyfuzji swobodnej.<br>
+    Rdzeń PIR: ε ≈ 0,04, τ → 8 → D<sub>eff,PIR</sub> ≈ 6 × 10⁻⁹ m²·s⁻¹ — 3200× mniejszy.<br>
+    Wniosek: pianka OC <span class="hr">nie izoluje dyfuzyjnie</span> — jest przezroczysta dla pary wodnej.
+  </p>
+</div>
+
+<h3 class="ital">Brak potencjału suszenia — pułapka wilgoci</h3>
+
+<p>
+  Kluczowym pojęciem fizyki przegród budowlanych, pomijanym przez niewiedzę projektantów
+  i wykonawców, jest <mark>potencjał suszenia</mark> (ang. <em>drying potential</em>):
+  zdolność przegrody do odprowadzenia wilgoci nagromadzonej zimą w sezonie letnim.
+  Dla pianki OC w kalenicay złączu potencjał ten jest <span class="hr">bliski zeru</span>:
+</p>
+
+<div class="myth-reality">
+  <div class="mr-col mr-myth">
+    <div class="mr-label">✗ Założenie wykonawcy</div>
+    <ul>
+      <li>Pianka OC „oddycha" — wilgoć sama wyjdzie latem</li>
+      <li>Taśma zewnętrzna alu/PE zapewni szczelność</li>
+      <li>Paroizolacja wewnętrzna eliminuje cały problem</li>
+      <li>Pianka jest tymczasowa — tylko na czas budowy</li>
+      <li>Wystarczy staranna aplikacja taśm uszczelniających</li>
+    </ul>
+  </div>
+  <div class="mr-col mr-real">
+    <div class="mr-label">✓ Fizyczna rzeczywistość</div>
+    <ul>
+      <li>Pianka OC jest ściśnięta między blachą alu PIR a zewnętrzną taśmą — brak cyrkulacji</li>
+      <li>W sezonie letnim gradient ΔT odwraca się — wilgoć migruje ku chłodnemu wnętrzu</li>
+      <li>Paroizolacja spowalnia dopływ, ale nie odprowadza wilgoci już w złączu</li>
+      <li>Pianka OC po związaniu jest trwałym elementem przegrody na 50 lat</li>
+      <li>Każda taśma zewnętrzna <em>blokuje</em> potencjał suszenia od zewnątrz</li>
+    </ul>
+  </div>
+</div>
+
+<div class="fb">
+  <div class="fl">Potencjał suszenia — kierunek przepływu latem vs zimą</div>
+  <div class="math-block">Δp<sub>v</sub><sup>zima</sup> = p<sub>v,int</sub> − p<sub>v,ext</sub> ≈ +1200 Pa &nbsp;&nbsp; (wilgoć → na zewnątrz)</div>
+  <div class="math-block">Δp<sub>v</sub><sup>lato</sup> = p<sub>v,int</sub> − p<sub>v,ext</sub> ≈ −200–+300 Pa &nbsp;&nbsp; (niejednoznaczny)</div>
+  <p>
+    W strefie klimatycznej Polski latem gradient ciśnienia pary jest znacznie mniejszy
+    i często odwrotny (gorące, wilgotne lato — nawet wyższe p<sub>v</sub> na zewnątrz).
+    Pianka OC zamknięta między taśmą zewnętrzną a paroizolacją wewnętrzną
+    <strong>nie ma termodynamicznej drogi odprowadzenia wilgoci w żadnym kierunku.</strong>
+    Obliczenia WUFI Pro wykazują, że pianka OC w kalenicay złączu osiąga
+    równowagowe nasycenie w ciągu 2–4 sezonów — niezależnie od obecności paroizolacji.
+  </p>
+</div>
+
+
+<!-- ════ §3 TRANSPORT WILGOCI ════ -->
+<h2><span class="sn">§ 3</span> Mechanizmy transportu wilgoci — analiza ilościowa dla obu scenariuszy</h2>
+
+<h3>3.1 Dyfuzja molekularna</h3>
+
+<div class="fb">
+  <div class="fl">Strumień dyfuzji Ficka — porównanie scenariuszy</div>
+  <div class="math-block">J̇<sub>dif</sub> = Δp<sub>v</sub> / ΣR<sub>d,i</sub> &nbsp;&nbsp;&nbsp; R<sub>d,i</sub> = (µ<sub>i</sub> · d<sub>i</sub>) / (D<sub>0</sub> · A)</div>
+  <p>
+    <strong>Scenariusz A</strong> (z paroizolacją µ = 100 000, d = 0,0002 m):
+    R<sub>d,paroizol</sub> ≈ 7,8 × 10⁸ Pa·s/kg → strumień ≈ 1,4 × 10⁻⁹ kg/(m²·s).<br>
+    <strong>Scenariusz B</strong> (bez paroizolacji, przez płytę PIR µ = 100):
+    R<sub>d,PIR</sub> ≈ 7,8 × 10⁵ Pa·s/kg → strumień ≈ <strong>1400× wyższy</strong>.<br>
+    Wniosek A: paroizolacja redukuje dyfuzję o ~3 rzędy wielkości —
+    <span class="hg">znacząca poprawa w fazie wolnego dopływu.</span><br>
+    Wniosek B: bez paroizolacji — permanentny i silny strumień przez złącze OC.
+  </p>
+</div>
+
+<h3>3.2 Mikrokonwekcja — niezależna od paroizolacji</h3>
+
+<div class="fb">
+  <div class="fl">Przepływ konwekcyjny przez piankę OC — model Darcy'ego</div>
+  <div class="math-block">Q̇<sub>konw</sub> = (k<sub>D</sub> · A · ΔP) / (η · L) &nbsp;&nbsp;&nbsp; k<sub>D,OC</sub> ≈ 10<sup>−9</sup>–10<sup>−10</sup> m²</div>
+  <p>
+    Dla A = 0,5 m × 0,08 m = 0,04 m², ΔP = 10 Pa (efekt kominowy), L = 0,08 m, η = 1,81·10⁻⁵ Pa·s:<br>
+    Q̇ ≈ <strong>2,2 × 10⁻⁶ m³/s</strong> — stały przepływ wilgotnego powietrza przez piankę OC.<br>
+    <span class="hr">Paroizolacja wewnętrzna NIE blokuje mikrokonwekcji.</span>
+    Ciśnienie dynamiczne efektu kominowego działa na piankę OC niezależnie od
+    obecności folii paroizolacyjnej po stronie ciepłej.
+  </p>
+</div>
+
+<div class="fb">
+  <div class="fl">Liczba Pecleta — kryterium dominacji konwekcji nad dyfuzją</div>
+  <div class="math-block">Pe = (v̄ · L) / D<sub>eff</sub> = (0,005 · 0,08) / (1,9 × 10<sup>−5</sup>) ≈ <strong>21</strong></div>
+  <p>
+    Pe ≫ 1 — konwekcja dominuje nad dyfuzją w pianie OC.
+  </p>
+</div>
+
+<h3>3.3 Termodyfuzja Soret'a — stały napęd ku chłodnej strefie</h3>
+
+<div class="fb">
+  <div class="fl">Strumień termodyfuzji Soret'a</div>
+  <div class="math-block">J⃗<sub>S</sub> = −α<sub>T</sub> · ρ<sub>v</sub> · D<sub>eff,OC</sub> · ∇T &nbsp;&nbsp;&nbsp; α<sub>T</sub> ≈ 6 × 10<sup>−3</sup> K<sup>−1</sup></div>
+  <p>
+    ∇T w kalenicay ≈ 250–500 K/m (zima) →
+    J<sub>S</sub> ≈ <strong>3,2 × 10⁻⁶ kg/(m²·s)</strong>.
+    Napęd <span class="hr">całkowicie niezależny od ciśnienia i od paroizolacji</span>.
+  </p>
+</div>
+
+<h3>3.4 Resublimacja — zamrożony kumulant wilgoci</h3>
+
+<div class="fb">
+  <div class="fl">Strumień resublimacji przy T &lt; 0°C</div>
+  <div class="math-block">ṁ<sub>resub</sub> = k<sub>resub</sub>(T) · max(0, p<sub>v</sub> − p<sub>sat</sub><sup>ice</sup>(T)) − (∂ρ<sub>ice</sub>/∂t) · L<sub>s</sub></div>
+  <p>
+    L<sub>s</sub> = 2,838 × 10⁶ J·kg⁻¹. Przy temperaturach poniżej zera
+    kondensat w pianie OC zamarza — <strong>lód nie ma możliwości ewakuacji</strong>.
+    Z każdym cyklem F/T struktura OC jest dodatkowo uszkadzana mechanicznie
+    (P<sub>cryst</sub> ≈ 20–200 MPa).
+  </p>
+</div>
+
+
+<!-- ════ §4 MODEL KASKADOWY ════ -->
+<h2><span class="sn">§ 4</span> Kaskadowy model degradacji — oba scenariusze równolegle</h2>
+
+<div class="legend">
+  <div class="li"><div class="ld" style="background:var(--c1-bd)"></div>FAZA I — Inicjacja</div>
+  <div class="li"><div class="ld" style="background:var(--c2-bd)"></div>FAZA II — Akumulacja</div>
+  <div class="li"><div class="ld" style="background:var(--c3-bd)"></div>FAZA III — Eskalacja termomechaniczna · Bifurkacja</div>
+  <div class="li"><div class="ld" style="background:var(--c4-bd)"></div>FAZA IV — Degradacja materiałowa</div>
+  <div class="li"><div class="ld" style="background:var(--c5-bd)"></div>FAZA V — Zniszczenie strukturalne</div>
+</div>
+
+<div class="cascade-flow">
+
+  <div class="cs">
+    <div class="cbox l1">
+      <div class="cbox-tag">◉ FAZA I — INICJACJA TRANSPORTU · Lata 1–2</div>
+      <h4>Cichy transport wilgoci przez piankę OC — bez widocznych objawów</h4>
+      <p>Trzy niezależne mechanizmy transportu uruchamiają się natychmiast od pierwszego sezonu grzewczego.</p>
+      <div class="sc-pair">
+        <div class="sc-mini" style="background:#e5f1fb; border:1px solid #1a6fa0;">
+          <div class="sm-label" style="color:#1a6fa0;">Scenariusz A (z paroizolacją)</div>
+          Dyfuzja silnie ograniczona. Mikrokonwekcja (Pe ≈ 21) i termodyfuzja Soret aktywne.
+          <strong>Całkowity napływ wilgoci: ~60–80% przypadku B.</strong>
+        </div>
+        <div class="sc-mini" style="background:#fff0ec; border:1px solid #bf360c;">
+          <div class="sm-label" style="color:#bf360c;">Scenariusz B (bez paroizolacji)</div>
+          Dyfuzja 1400× wyższa niż Scen. A. Konwekcja i termodyfuzja identyczne.
+          <strong>Całkowity napływ wilgoci: 5–8× wyższy niż Scen. A.</strong>
+        </div>
+      </div>
+      <div class="eff">
+        <strong>Punkt kluczowy:</strong> Brak potencjału suszenia oznacza, że każda cząsteczka wody wnikła do OC
+        <em>pozostaje tam na stałe</em>.
+      </div>
+    </div>
+    <div class="dn">↓</div>
+  </div>
+
+  <div class="cs">
+    <div class="cbox l2">
+      <div class="cbox-tag">◉ FAZA II — AKUMULACJA I KONDENSACJA · Lata 2–5 (A) / 1–3 (B)</div>
+      <h4>Przekroczenie punktu rosy — kondensacja w rdzeniu OC i na aluminium PIR</h4>
+      <p>Para wodna transportowana przez OC osiąga strefę T &lt; T<sub>dew</sub>. Kondensacja zachodzi na okładzinie aluminiowej płyt PIR.</p>
+      <div class="sc-pair">
+        <div class="sc-mini" style="background:#e5f1fb; border:1px solid #1a6fa0;">
+          <div class="sm-label" style="color:#1a6fa0;">Scenariusz A</div>
+          Punkt nasycenia (w<sub>sat</sub>) osiągany po ~3–5 sezonach.
+          <strong>Pułapka wilgoci zamknięta.</strong>
+        </div>
+        <div class="sc-mini" style="background:#fff0ec; border:1px solid #bf360c;">
+          <div class="sm-label" style="color:#bf360c;">Scenariusz B</div>
+          w<sub>sat</sub> po ~1–2 sezonach. Kondensat migruje do rdzenia PIR.
+          <strong>Degradacja PIR inicjuje się po 2 sezonie.</strong>
+        </div>
+      </div>
+      <div class="eff">
+        Tworzy się <span class="hr">termiczny mostek wilgotnościowy</span> o 20-krotnie wyższej przewodności.
+      </div>
+    </div>
+    <div class="dn">↓</div>
+  </div>
+
+  <div class="cs">
+    <div class="cbox l3">
+      <div class="cbox-tag">◉ FAZA III — ESKALACJA TERMOMECHANICZNA · BIFURKACJA · Lata 4–8 (A) / 2–5 (B)</div>
+      <h4>Cykle zamrażania/rozmrażania — rozrost szczeliny — punkt bez powrotu</h4>
+      <p>Przy T &lt; 0°C kondensat zamarza. P<sub>cryst</sub> ≈ 20–200 MPa — wielokrotnie powyżej wytrzymałości PIR i adhezji pianki OC.</p>
+      <div class="sc-pair">
+        <div class="sc-mini" style="background:#e5f1fb; border:1px solid #1a6fa0;">
+          <div class="sm-label" style="color:#1a6fa0;">Scenariusz A — bifurkacja po ~5–8 sezonach</div>
+          <strong>Po 6–8 latach szczelina h &gt; 1 mm → Ra &gt; Ra<sub>cr</sub>.</strong>
+        </div>
+        <div class="sc-mini" style="background:#fff0ec; border:1px solid #bf360c;">
+          <div class="sm-label" style="color:#bf360c;">Scenariusz B — bifurkacja po ~2–4 sezonach</div>
+          <strong>Bifurkacja i samowzmocnienie uszkodzenia po ~3–4 latach.</strong>
+        </div>
+      </div>
+      <div class="eff">
+        <span class="hr">Po przekroczeniu bifurkacji powrót do stanu pierwotnego jest energetycznie niemożliwy.</span>
+      </div>
+    </div>
+    <div class="dn">↓</div>
+  </div>
+
+  <div class="cs">
+    <div class="cbox l4">
+      <div class="cbox-tag">◉ FAZA IV — DEGRADACJA MATERIAŁOWA · Lata 8–15 (A) / 5–10 (B)</div>
+      <h4>Hydroliza PIR, konwekcja termiczna Ra &gt; Ra<sub>cr</sub>, mostek λ</h4>
+      <p>λ złącza: 0,03 → 0,60 W·m⁻¹·K⁻¹. Ra &gt; Ra<sub>cr</sub> = 1708 → autonomiczna cyrkulacja. U wzrasta: 0,10 → 0,25–0,45 W·m⁻²·K⁻¹.</p>
+      <div class="eff">
+        <strong>Pierwsze widoczne objawy:</strong> plamy na sufitach, zapach stęchlizny, odbarwienia OSB.
+      </div>
+    </div>
+    <div class="dn">↓</div>
+  </div>
+
+  <div class="cs">
+    <div class="cbox l5">
+      <div class="cbox-tag">◉ FAZA V — ZNISZCZENIE STRUKTURALNE · Lata 15–25 (A) / 8–15 (B)</div>
+      <h4>Utrata nośności więźby — konieczność wymiany dachu</h4>
+      <p>Wilgotność drewna &gt;20% → grzyby rozkładu Basidiomycota. Korozja łączników redukuje nośność o 30–70%. Gnicie krokwi, łat, paczenie OSB.</p>
+      <div class="eff">
+        <strong style="color:#ff8a80;">Naprawa = pełna wymiana układu izolacyjnego + często więźby. Koszt: 5–12× wyższy niż prawidłowe wykonanie.</strong>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ════ §5 PROGNOZA CZASOWA ════ -->
+<h2><span class="sn">§ 5</span> Prognoza czasowa degradacji — porównanie scenariuszy A i B</h2>
+
+<div class="timeline">
+  <div class="tl-row tl-head">
+    <div class="tl-year">Rok</div>
+    <div class="tl-cell a">Scenariusz A — Z paroizolacją</div>
+    <div class="tl-cell b">Scenariusz B — BEZ paroizolacji</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-year">1</div>
+    <div class="tl-cell a">Inicjacja. Mikrokonwekcja i Soret aktywne. Wilgotność OC rośnie.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~5%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:95%"></div></div></div>
+    </div>
+    <div class="tl-cell b">Szybka inicjacja. Kondensacja na aluminium PIR już w sezonie 1.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~15%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:85%"></div></div></div>
+    </div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-year">2–3</div>
+    <div class="tl-cell a">Akumulacja kondensatu. Cykle F/T inicjują poszerzenie szczeliny. λ złącza rośnie.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~15%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:85%"></div></div></div>
+    </div>
+    <div class="tl-cell b">OC nasycone. Kondensat migruje do rdzenia PIR. Inicjacja hydrolizy.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~35%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:65%"></div></div></div>
+    </div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-year">4–6</div>
+    <div class="tl-cell a">OC osiąga nasycenie. Bifurkacja zbliża się. λ złącza 2–3× ponad projektową.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~30%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:70%"></div></div></div>
+    </div>
+    <div class="tl-cell b"><span class="hr">Bifurkacja osiągnięta.</span> Ra &gt; Ra<sub>cr</sub>. U dachu przekracza WT 2021.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~55%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:45%"></div></div></div>
+    </div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-year">7–10</div>
+    <div class="tl-cell a"><span class="hr">Bifurkacja osiągnięta.</span> Pierwsze ślady wilgoci na sufitach. U: 0,18–0,28 W·m⁻²·K⁻¹.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~50%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:50%"></div></div></div>
+    </div>
+    <div class="tl-cell b">Wilgotność drewna &gt;20%. Grzyby rozkładu aktywne. Korozja łączników widoczna.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~75%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:25%"></div></div></div>
+    </div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-year">12–20</div>
+    <div class="tl-cell a">Degradacja strukturalna. U: 0,25–0,40 W·m⁻²·K⁻¹. <strong>Wymiana dachu konieczna.</strong>
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~80%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:20%"></div></div></div>
+    </div>
+    <div class="tl-cell b"><span class="hr">Utrata nośności węzła kalenicy.</span> Gnicie krokwi. Ryzyko mechanicznej awarii.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~95%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:5%"></div></div></div>
+    </div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-year">&gt;25</div>
+    <div class="tl-cell a">Stan jak Scen. B po 15 latach. Pełna wymiana dachu + więźby.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: ~95%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:5%"></div></div></div>
+    </div>
+    <div class="tl-cell b">Całkowita utrata funkcji. Awaria strukturalna.
+      <div class="dmeter"><div class="dmeter-label">Degradacja: 100%</div>
+        <div class="dmeter-bar"><div class="dmeter-fill" style="width:0%"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="crit">
+  <div class="cl">⚠ Wniosek z prognozy czasowej</div>
+  <p>
+    Oba scenariusze prowadzą do tego samego końcowego stanu zniszczenia.
+    <strong>Paroizolacja wewnętrzna przesuwa moment krytycznej degradacji o ~5–10 lat</strong>,
+    ale nie zmienia nieuchronności procesu.
+  </p>
+  <p>
+    Norma PN-EN 1990 wymaga trwałości przez <strong>50 lat</strong>.
+    Oba scenariusze naruszają to kryterium o 25–35 lat.
+  </p>
+</div>
+
+
+<!-- ════ §6 HAM ════ -->
+<h2><span class="sn">§ 6</span> Sprzężone równania HAM — model Künzela dla obu scenariuszy</h2>
+
+<div class="fb">
+  <div class="fl">Sprzężone równania energii i masy (Künzel 1994)</div>
+  <div class="math-block">(ρc<sub>p</sub> + c<sub>w</sub>w) · ∂T/∂t = ∇·(λ<sub>eff</sub>(w)·∇T) + L<sub>v</sub>·ṁ<sub>cond</sub> + L<sub>s</sub>·ṁ<sub>resub</sub></div>
+  <div class="math-block">∂w/∂t = ∇·(D<sub>w</sub>(w)·∇w + δ<sub>p</sub>(w)·∇p<sub>v</sub>) − ṁ<sub>cond</sub> − ṁ<sub>resub</sub></div>
+</div>
+
+<div class="warn">
+  <div class="wl">⚡ Parametr krytyczny — symulacje numeryczne</div>
+  <p>
+    Symulacje WUFI Pro: <strong>Scenariusz A</strong> — nasycenie OC po ~3 sezonach, bifurkacja po ~7 latach.
+    <strong>Scenariusz B</strong> — nasycenie po ~1 sezonie, bifurkacja po ~3–4 latach.
+    Wilgotność OC jest funkcją monotonicznie rosnącą przez cały okres symulacji (50 lat).
+  </p>
+</div>
+
+
+<!-- ════ §7 TABELA MECHANIZMÓW ════ -->
+<h2><span class="sn">§ 7</span> Tabela mechanizmów — skuteczność paroizolacji i taśmy zewnętrznej</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mechanizm</th>
+      <th>Wzór</th>
+      <th>Blokada paroizolacją wewn.?</th>
+      <th>Blokada taśmą zewn.?</th>
+      <th>Faza</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Dyfuzja przez OC (Pe &lt; 1)</strong></td>
+      <td><code>J = D_eff·Δρ_v; µ_OC≈3</code></td>
+      <td class="vo">TAK — redukuje o ~1000×</td>
+      <td class="vf">NIE</td>
+      <td>I–III</td>
+    </tr>
+    <tr>
+      <td><strong>Mikrokonwekcja Darcy (Pe ≫ 1)</strong></td>
+      <td><code>Q = k_D·ΔP/(η·L)</code></td>
+      <td class="vf">NIE — efekt kominowy omija folię</td>
+      <td class="vf">NIE</td>
+      <td>I–IV</td>
+    </tr>
+    <tr>
+      <td><strong>Termodyfuzja Soret'a</strong></td>
+      <td><code>J_S = α_T·ρ_v·D_eff·∇T</code></td>
+      <td class="vf">NIE — napęd termiczny przez OC</td>
+      <td class="vf">NIE</td>
+      <td>I, II</td>
+    </tr>
+    <tr>
+      <td><strong>Kondensacja w rdzeniu OC</strong></td>
+      <td><code>ṁ_cond = k·max(0,p_v−p_sat)</code></td>
+      <td class="vp">CZĘŚCIOWO</td>
+      <td class="vf">NIE</td>
+      <td>II, III</td>
+    </tr>
+    <tr>
+      <td><strong>Brak potencjału suszenia</strong></td>
+      <td><code>ΔG_dry ≈ 0 (OC zamknięty)</code></td>
+      <td class="vf">NIE — pogarsza</td>
+      <td class="vf">NIE — pogarsza</td>
+      <td>I–V</td>
+    </tr>
+    <tr>
+      <td><strong>Kapilarny transport cieczy</strong></td>
+      <td><code>J_cap = D_w(w)·∇w</code></td>
+      <td class="vf">NIE</td>
+      <td class="vf">NIE</td>
+      <td>II–IV</td>
+    </tr>
+    <tr>
+      <td><strong>Resublimacja / cykl F/T</strong></td>
+      <td><code>ΔV_ice = +9,05%; P_cryst≈100 MPa</code></td>
+      <td class="vp">CZĘŚCIOWO</td>
+      <td class="vf">NIE — niszczy taśmę od środka</td>
+      <td>III</td>
+    </tr>
+    <tr>
+      <td><strong>Konwekcja termiczna Ra &gt; Ra<sub>cr</sub></strong></td>
+      <td><code>Ra = g·β·ΔT·h³/(ν·α)</code></td>
+      <td class="vf">NIE</td>
+      <td class="vf">NIE</td>
+      <td>IV</td>
+    </tr>
+    <tr>
+      <td><strong>Hydroliza PIR</strong></td>
+      <td><code>λ_eff(t,w) → 0,60 W·m⁻¹·K⁻¹</code></td>
+      <td class="vp">CZĘŚCIOWO — opóźnia o 3–5 lat</td>
+      <td class="vf">NIE</td>
+      <td>IV, V</td>
+    </tr>
+    <tr>
+      <td><strong>Infiltracja opadów zewnętrznych</strong></td>
+      <td><code>ΔP_wiatr + grawitacja</code></td>
+      <td class="vf">NIE</td>
+      <td class="vo">TAK — jedyna skuteczna rola</td>
+      <td>II (zewn.)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Paroizolacja wewnętrzna jest <span class="hg">skuteczna wyłącznie wobec dyfuzji molekularnej</span> —
+  ale ta nie jest dominującym mechanizmem transportu (Pe ≈ 21).
+  Na pozostałe 8 mechanizmów — <span class="hr">paroizolacja jest bezskuteczna lub częściowo skuteczna.</span>
+</p>
+
+
+<!-- ════ §8 SKUTKI ZDROWOTNE ════ -->
+<h2><span class="sn">§ 8</span> Skutki zdrowotne — chroniczna ekspozycja przez lata ukrytej degradacji</h2>
+
+<div class="health-grid">
+  <div class="hcard h1">
+    <div class="hcard-title">Patogeny mikrobiologiczne — grzyby</div>
+    <p>
+      Przy RH &gt; 80% przez &gt;30 dni — Stachybotrys chartarum (czarna pleśń, mykotoksyny).
+      Skutki: astma alergiczna, zespół budynku chorego (SBS), przewlekły katar.
+    </p>
+  </div>
+  <div class="hcard h2">
+    <div class="hcard-title">Emisja VOC z degradującego PIR</div>
+    <p>
+      Hydroliza PIR uwalnia diizocyjaniany (MDI, TDI — kancerogeny grupy 3 IARC),
+      aminy aromatyczne (4,4'-MDA — kancerogen grupy 2B), penty.
+    </p>
+  </div>
+  <div class="hcard h3">
+    <div class="hcard-title">Degradacja drewna i zagrożenie pożarowe</div>
+    <p>
+      Serpula lacrymans przy wilgotności &gt;20%: degraduje celulozę, produkuje kwasy
+      korodujące izolację kabli elektrycznych — ryzyko pożaru.
+    </p>
+  </div>
+</div>
+
+<div class="crit">
+  <div class="cl">⚠ Synergizm skutków zdrowotnych</div>
+  <p>
+    Równoczesna ekspozycja na mykotoksyny + diizocyjaniany + aminy aromatyczne działa synergistycznie.
+    Średni czas od inicjacji zawilgocenia do rozpoznania przyczyny: <strong>5–12 lat</strong>.
+  </p>
+</div>
+
+
+<!-- ════ §9 KOSZTY ════ -->
+<h2><span class="sn">§ 9</span> Ekonomika zniszczenia — koszty naprawy vs prewencja</h2>
+
+<div class="cost-grid">
+  <div class="cost-card c1">
+    <div class="cost-num">1×</div>
+    <div class="cost-label">Prawidłowe wykonanie od początku</div>
+  </div>
+  <div class="cost-card c2">
+    <div class="cost-num">2–3×</div>
+    <div class="cost-label">Naprawa Fazy I–II — wymiana OC, uszczelnienie</div>
+  </div>
+  <div class="cost-card c3">
+    <div class="cost-num">5–8×</div>
+    <div class="cost-label">Naprawa Fazy III–IV — wymiana izolacji, osuszanie</div>
+  </div>
+  <div class="cost-card c4">
+    <div class="cost-num">10–15×</div>
+    <div class="cost-label">Naprawa Fazy V — wymiana dachu + więźby + koszty zdrowotne</div>
+  </div>
+</div>
+
+<p>
+  <mark>Szacowany łączny koszt awarii Fazy V: 12–18× koszt prawidłowego wykonania.</mark>
+</p>
+
+
+<!-- ════ §10 ZALECENIA ════ -->
+<h2><span class="sn">§ 10</span> Jedyne skuteczne strategie prewencji — wymagania minimalne</h2>
+
+<div class="fb">
+  <div class="fl">Warunek projektowy — brak konwekcji termicznej w szczelinie</div>
+  <div class="math-block">h<sub>max</sub> = (1708 · ν · α / (g · β · ΔT))<sup>1/3</sup> ≈ 2,5 mm &nbsp;&nbsp; (ΔT = 20 K)</div>
+  <p>Kryterium projektowe: h ≤ 0,5 mm przez cały 50-letni okres eksploatacji — niemożliwe bez eliminacji pianki OC.</p>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metoda</th>
+      <th>Mechanizm działania</th>
+      <th>Skuteczność</th>
+      <th>Wymagania</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Ciągła wewnętrzna paroizolacja</strong></td>
+      <td>Redukuje dyfuzję o ~1000×. Nie eliminuje konwekcji przez OC.</td>
+      <td class="vp">CZĘŚCIOWA — konieczna, niewystarczająca</td>
+      <td>µ ≥ 50 000; złącza na klej MS; deformacja ≥25%</td>
+    </tr>
+    <tr>
+      <td><strong>Eliminacja pianki OC z kalenicy</strong></td>
+      <td>Zastąpienie µ≈3 materiałem µ &gt; 100</td>
+      <td class="vo">WYSOKA — adresuje źródło problemu</td>
+      <td>Pianka CC µ ≥ 50 lub listwa EPDM prefabrykowana</td>
+    </tr>
+    <tr>
+      <td><strong>Ciągłość termiczna PIR</strong></td>
+      <td>Brak T &lt; T<sub>dew</sub> w przekroju → brak kondensacji</td>
+      <td class="vo">WYSOKA</td>
+      <td>Kliny PIR; weryfikacja T<sub>min</sub> &gt; T<sub>dew</sub></td>
+    </tr>
+    <tr>
+      <td><strong>Obustronna bariera paroszczelna</strong></td>
+      <td>Wewnątrz + uszczelnienie złącza klejem paroszczelnym</td>
+      <td class="vo">WYSOKA</td>
+      <td>Klej paroszczelny na krawędziach cięcia PIR; µ·d ≥ 10 m</td>
+    </tr>
+    <tr>
+      <td><strong>Monitoring RH in situ</strong></td>
+      <td>Wczesne wykrycie Fazy I przed bifurkacją</td>
+      <td class="vp">UZUPEŁNIAJĄCA</td>
+      <td>Czujniki RH + T w złączu; alarm przy RH &gt; 80%</td>
+    </tr>
+    <tr>
+      <td><strong>Taśma alu/PE zewnętrzna</strong></td>
+      <td>Blokuje tylko infiltrację opadową od zewnątrz</td>
+      <td class="vf">BRAK wobec dyfuzji wewnętrznej</td>
+      <td>Nigdy jako główne uszczelnienie dyfuzyjne</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note">
+  <strong>Wymagania minimalne prawidłowego projektowania złącza kalenicy PIR:</strong>
+  (1) Ciągła paroizolacja po stronie ciepłej — konieczna, ale <em>niewystarczająca</em>;
+  (2) Eliminacja pianki OC — zastąpienie CC SPF lub listwą EPDM;
+  (3) Ciągłość termiczna — brak mostka w przekroju kalenicy;
+  (4) Uszczelnienie krawędzi cięcia klejem paroszczelnym;
+  (5) Weryfikacja HAM (WUFI / DELPHIN);
+  (6) Monitoring RH.
+  Brak spełnienia punktów 1–4 <mark>czyni projekt niezgodnym z PN-EN 15026 i WT 2021</mark>.
+</div>
+
+<hr class="sep">
+
+<p style="font-size:0.9rem; color:#666; font-style:italic; text-align:center; line-height:1.7;">
+  Opisany problem jest błędem systemowym — wynikającym z luki wiedzy na styku projektowania,
+  dystrybucji materiałów i wykonawstwa. Norma PN-EN 1990 wymaga 50 lat trwałości.
+  Opisany błąd skraca żywotność układu dachowego do 8–25 lat. Różnica jest kosztowna,
+  zdrowotnie niebezpieczna i prawnie dotkliwa dla wszystkich odpowiedzialnych stron.
+</p>
+
+</div>
+
+<footer>
+  Model opracowany na poziomie naukowym inżynierii budownictwa · Wersja 3<br>
+  <span>PIR + Pianka Otwartokomórkowa · Kaskadowa Degradacja Kalenicy · Scenariusz A i B</span><br>
+  Transport wilgoci HAM · Künzel · Hagen–Poiseuille · Soret · Bifurkacja kaskadowa<br>
+  PN-EN 1990 · PN-EN 15026 · PN-EN ISO 6946 · WT 2021 · WUFI Pro / DELPHIN
+</footer>
+
+
 </body>
 </html>
